@@ -1,4 +1,4 @@
-package hrms.entities.concretes;
+package kodlamaio.hrms.entities.concretes;
 
 
 import lombok.AllArgsConstructor;
@@ -17,10 +17,10 @@ public class JobPosition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-   private int id;
+    private int id;
 
-    @Column(name="position")
-   private String position;
+    @Column(name="title")
+    private String position;
 
 
 
