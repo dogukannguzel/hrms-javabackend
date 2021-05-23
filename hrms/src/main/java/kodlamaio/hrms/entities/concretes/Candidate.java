@@ -15,11 +15,6 @@ import java.time.LocalDate;
 @Table(name = "candidates")
 public class Candidate extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
-
     @Column(name = "first_name")
     private String firstName;
 
