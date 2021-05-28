@@ -1,10 +1,10 @@
 package kodlamaio.hrms.business.concretes;
 
+import kodlamaio.hrms.business.constrains.Message;
 import kodlamaio.hrms.business.abstracts.JobPositionService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
-import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.business.validationRules.abstracts.JobPositionValidatorService;
+import kodlamaio.hrms.core.utilities.businessEngine.BusinessRun;
+import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +15,49 @@ import java.util.List;
 @Service
 public class JobPositionManager implements JobPositionService {
 
-    private JobPositionDao jobDao;
+    private final JobPositionDao jobPositionDao;
+    private final JobPositionValidatorService jobPositionValidatorService;
 
     @Autowired
-    public JobPositionManager(JobPositionDao jobDao){
-        this.jobDao=jobDao;
-     }
-
-    @Override
-    public DataResult<List<JobPosition>> getAll() {
-        return new SuccessDataResult<List<JobPosition>>(this.jobDao.findAll(),"Data Başarıyla getirildi");
+    public JobPositionManager(JobPositionDao jobPositionDao, JobPositionValidatorService jobPositionValidatorService) {
+        this.jobPositionDao = jobPositionDao;
+        this.jobPositionValidatorService = jobPositionValidatorService;
     }
+
 
     @Override
     public Result add(JobPosition jobPosition) {
 
-        this.jobDao.save(jobPosition);
+        Result positionValidate = this.jobPositionValidatorService.positionNullCheck(jobPosition.getPosition());
 
-        return new SuccessResult("Veri ekleme işlemi başarılı");
+        if (positionValidate.isSuccess()){
+            Result positionCheck = BusinessRun.run(positionExist(jobPosition.getPosition()));
+            if (positionCheck.isSuccess()){
+                this.jobPositionDao.save(jobPosition);
+                return new SuccessResult(Message.positionAdded);
+            }
+           return positionCheck;
+
+        }
+
+        return  positionValidate;
+
     }
+
+    @Override
+    public DataResult<List<JobPosition>> getAll() {
+        return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(), Message.positionListed);
+    }
+
+
+    private Result positionExist(String position){
+        if (this.jobPositionDao.findByPosition(position).isPresent()){
+            return new ErrorResult(Message.positionExist);
+        }
+        return new SuccessResult();
+    }
+
+
+
+
 }

@@ -14,24 +14,25 @@ import java.util.List;
 @RequestMapping("/api/candidates")
 public class CandidatesController {
 
-    private CandidateService candidateService;
+    private final CandidateService candidateService;
 
     @Autowired
-    public CandidatesController(CandidateService candidateService){
-        this.candidateService=candidateService;
+    public CandidatesController(CandidateService candidateService) {
+        this.candidateService = candidateService;
     }
 
-
-    @GetMapping("getall")
+    @GetMapping("/getall")
     public DataResult<List<Candidate>> getAll(){
+
         return this.candidateService.getAll();
+
     }
 
-    @PostMapping("/add")
-    public Result add(@RequestBody Candidate candidate){
 
-        return this.candidateService.add(candidate);
-    }
+
+
+
+
 
 
 }

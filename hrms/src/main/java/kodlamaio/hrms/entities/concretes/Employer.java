@@ -13,6 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 @Table(name = "employers")
 public class Employer extends User {
 
@@ -24,6 +25,15 @@ public class Employer extends User {
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    public Employer(String email, String password, String companyName, String webAddress, String phoneNumber) {
+        super(email, password);
+        this.companyName = companyName;
+        this.webAddress = webAddress;
+        this.phoneNumber = phoneNumber;
+    }
+
+
 
 
 }

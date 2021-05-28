@@ -2,9 +2,11 @@ package kodlamaio.hrms.entities.abstracts;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
 
 @Data
 @AllArgsConstructor
@@ -12,7 +14,7 @@ import javax.persistence.*;
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
-public class User {
+public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +24,15 @@ public class User {
     @Column(name = "email_address")
     private String email;
 
+
     @Column(name = "password")
     private String password;
 
+
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="job_positions")
@@ -19,10 +20,7 @@ public class JobPosition {
     @Column(name="id")
     private int id;
 
+    @NotBlank(message = "Pozisyon ismi boş olamaz.")
     @Column(name="title")
     private String position;
-
-
-
-
 }

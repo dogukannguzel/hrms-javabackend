@@ -3,6 +3,7 @@ package kodlamaio.hrms.entities.concretes;
 import kodlamaio.hrms.entities.abstracts.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -12,6 +13,8 @@ import java.time.LocalDate;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@PrimaryKeyJoinColumn(name = "id")
 @Table(name = "candidates")
 public class Candidate extends User {
 
@@ -26,6 +29,15 @@ public class Candidate extends User {
 
     @Column(name = "birth_date")
     private LocalDate birthDate;
+
+    public Candidate( String email, String password, String firstName,String lastName,String identificationNumber,LocalDate birthDate) {
+        super(email, password);
+        this.firstName = firstName;
+        this.identificationNumber=identificationNumber;
+        this.birthDate=birthDate;
+        this.lastName=lastName;
+    }
+
 
 
 }
