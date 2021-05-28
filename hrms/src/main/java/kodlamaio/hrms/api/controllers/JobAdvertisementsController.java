@@ -2,6 +2,7 @@ package kodlamaio.hrms.api.controllers;
 
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
+import kodlamaio.hrms.business.constrains.Message;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -49,4 +50,9 @@ public class JobAdvertisementsController {
     public DataResult<List<JobAdvertisement>> getAllSorted() {
         return this.jobAdvertisementService.getAllSorted();
     }
+    @GetMapping("/getAllByEmployerId/{id}")
+    public  DataResult<List<JobAdvertisement>> getByEmployerId(@PathVariable  int id) {
+        return this.jobAdvertisementService.getByEmployerId(id);
+    }
+
 }

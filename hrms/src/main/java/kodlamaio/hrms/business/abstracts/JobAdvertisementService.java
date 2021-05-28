@@ -16,5 +16,5 @@ public interface JobAdvertisementService {
 
    DataResult<List<JobAdvertisement>> getAllSorted();
     Result setİsJobEnable(int employerId,int id);
-
+    DataResult<List<JobAdvertisement>> getByEmployerId(int id);
 }

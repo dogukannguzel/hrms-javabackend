@@ -53,4 +53,9 @@ public class JobAdvertisementManager implements JobAdvertisementService {
         jobAdvertisement.setEnable(false);
         return new SuccessResult(Message.setJobAdvertisement);
     }
+
+    @Override
+    public  DataResult<List<JobAdvertisement>> getByEmployerId(int id) {
+        return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByEmployerId(id),Message.jobAdvertisementListed);
+    }
 }

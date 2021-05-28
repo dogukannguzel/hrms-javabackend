@@ -13,5 +13,6 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement,Inte
 
     List<JobAdvertisement> getAllByApplicationDeadlineLessThanEqual(Date date);
 
+    List<JobAdvertisement> getByEmployerId(int id);
 
 }
