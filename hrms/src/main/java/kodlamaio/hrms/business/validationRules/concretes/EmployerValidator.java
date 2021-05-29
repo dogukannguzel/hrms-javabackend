@@ -5,8 +5,7 @@ import kodlamaio.hrms.business.validationRules.abstracts.EmployerValidatorServic
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
-import kodlamaio.hrms.entities.concretes.Employer;
-import org.assertj.core.util.Strings;
+import kodlamaio.hrms.entities.concretes.Company;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +13,7 @@ public class EmployerValidator  implements EmployerValidatorService {
 
 
     @Override
-    public Result emailCheck(Employer employer) {
+    public Result emailCheck(Company employer) {
 
         String email=employer.getEmail();
         String webAddres = employer.getWebAddress();

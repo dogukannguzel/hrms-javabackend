@@ -1,8 +1,9 @@
 package kodlamaio.hrms.business.validationRules.abstracts;
 
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.concretes.Company;
+
 
 public interface EmployerValidatorService {
-    Result emailCheck(Employer employer);
+    Result emailCheck(Company employer);
 }

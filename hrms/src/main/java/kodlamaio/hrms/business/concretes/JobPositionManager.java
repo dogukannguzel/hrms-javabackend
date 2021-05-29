@@ -2,8 +2,6 @@ package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.constrains.Message;
 import kodlamaio.hrms.business.abstracts.JobPositionService;
-import kodlamaio.hrms.business.validationRules.abstracts.JobPositionValidatorService;
-import kodlamaio.hrms.core.utilities.businessEngine.BusinessRun;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;
@@ -16,33 +14,21 @@ import java.util.List;
 public class JobPositionManager implements JobPositionService {
 
     private final JobPositionDao jobPositionDao;
-    private final JobPositionValidatorService jobPositionValidatorService;
+
 
     @Autowired
-    public JobPositionManager(JobPositionDao jobPositionDao, JobPositionValidatorService jobPositionValidatorService) {
+    public JobPositionManager(JobPositionDao jobPositionDao) {
         this.jobPositionDao = jobPositionDao;
-        this.jobPositionValidatorService = jobPositionValidatorService;
+
     }
 
 
     @Override
     public Result add(JobPosition jobPosition) {
 
-        Result positionValidate = this.jobPositionValidatorService.positionNullCheck(jobPosition.getPosition());
-
-        if (positionValidate.isSuccess()){
-            Result positionCheck = BusinessRun.run(positionExist(jobPosition.getPosition()));
-            if (positionCheck.isSuccess()){
-                this.jobPositionDao.save(jobPosition);
-                return new SuccessResult(Message.positionAdded);
-            }
-           return positionCheck;
-
-        }
-
-        return  positionValidate;
-
-    }
+        this.jobPositionDao.save(jobPosition);
+        return new SuccessResult(Message.positionAdded);
+}
 
     @Override
     public DataResult<List<JobPosition>> getAll() {

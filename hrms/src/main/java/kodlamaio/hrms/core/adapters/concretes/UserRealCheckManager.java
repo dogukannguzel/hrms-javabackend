@@ -2,7 +2,7 @@ package kodlamaio.hrms.core.adapters.concretes;
 
 import kodlamaio.hrms.core.adapters.abstracts.UserRealCheckService;
 import kodlamaio.hrms.entities.concretes.Candidate;
-import kodlamaio.hrms.mernis.EQQKPSPublicSoap;
+
 import org.springframework.stereotype.Component;
 
 

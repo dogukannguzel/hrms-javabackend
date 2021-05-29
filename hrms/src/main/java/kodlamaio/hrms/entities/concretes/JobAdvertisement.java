@@ -37,7 +37,7 @@ public class JobAdvertisement {
     private int openPosition;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "created_at")
     private Date createdDate;
 
