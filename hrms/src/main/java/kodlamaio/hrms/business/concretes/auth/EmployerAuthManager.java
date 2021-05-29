@@ -6,8 +6,9 @@ import kodlamaio.hrms.business.abstracts.auth.EmployerAuthService;
 import kodlamaio.hrms.business.validationRules.abstracts.AuthValidatorService;
 import kodlamaio.hrms.core.utilities.businessEngine.BusinessRun;
 import kodlamaio.hrms.core.utilities.results.*;
-import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.concretes.Company;
 import kodlamaio.hrms.entities.dtos.EmployerRegisterDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +18,13 @@ public class EmployerAuthManager implements EmployerAuthService {
     private final AuthValidatorService authValidatorService;
     private final EmployerService employerService;
     private final VerificationCodeService verificationCodeService;
-
+    private final ModelMapper modelMapper;
     @Autowired
-    public EmployerAuthManager(AuthValidatorService authValidatorService, EmployerService employerService, VerificationCodeService verificationCodeService) {
+    public EmployerAuthManager(AuthValidatorService authValidatorService, EmployerService employerService, VerificationCodeService verificationCodeService, ModelMapper modelMapper) {
         this.authValidatorService = authValidatorService;
         this.employerService = employerService;
         this.verificationCodeService = verificationCodeService;
+        this.modelMapper = modelMapper;
     }
 
 
@@ -44,7 +46,7 @@ public class EmployerAuthManager implements EmployerAuthService {
 
     private Result employerRegister(EmployerRegisterDto employerRegisterDto){
 
-        DataResult<Employer> result = this.candidateRegister(employerRegisterDto);
+        DataResult<Company> result = this.candidateRegister(employerRegisterDto);
        if (!result.isSuccess()){
             return result;
         }
@@ -57,16 +59,18 @@ public class EmployerAuthManager implements EmployerAuthService {
 
 
 
-    private DataResult<Employer> candidateRegister(EmployerRegisterDto employerRegisterDto){
+    private DataResult<Company> candidateRegister(EmployerRegisterDto employerRegisterDto){
 
-        Employer employer = new Employer(employerRegisterDto.getEmail(),employerRegisterDto.getPassword(),employerRegisterDto.getCompanyName(),employerRegisterDto.getWebAddress(),employerRegisterDto.getPhoneNumber());
+       // Employer employer = new Employer(employerRegisterDto.getEmail(),employerRegisterDto.getPassword(),employerRegisterDto.getCompanyName(),employerRegisterDto.getWebAddress(),employerRegisterDto.getPhoneNumber());
 
-        Result result=   this.employerService.add(employer);
+        Company company = modelMapper.map(employerRegisterDto, Company.class);
+
+        Result result=   this.employerService.add(company);
 
         if (!result.isSuccess()){
             return new ErrorDataResult<>(null, result.getMessage());
         }
-        return new SuccessDataResult<Employer>(employer,null);
+        return new SuccessDataResult<Company>(company,null);
 
     }
 

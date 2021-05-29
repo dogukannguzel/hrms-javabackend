@@ -1,6 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,9 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 
 @Data
@@ -36,10 +34,10 @@ public class JobAdvertisement {
     private int maxSalary;
 
     @Column(name = "number_of_open_positions")
-    private int openPoisiton;
+    private int openPosition;
 
     @CreationTimestamp
-    @Temporal(value = TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
     private Date createdDate;
 
@@ -55,7 +53,7 @@ public class JobAdvertisement {
 
     @ManyToOne()
     @JoinColumn(name = "company_id")
-    private Employer employer;
+    private Company company;
 
     @ManyToOne()
     @JoinColumn(name = "job_id")

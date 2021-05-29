@@ -8,6 +8,7 @@ import kodlamaio.hrms.business.validationRules.abstracts.AuthValidatorService;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.dtos.CandidatesRegisterDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +18,15 @@ public class CandidateAuthManager implements CandidateAuthService {
     private final CandidateService candidateService;
     private final AuthValidatorService authValidatorService;
     private final VerificationCodeService verificationCodeService;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public CandidateAuthManager(CandidateService candidateService, AuthValidatorService authValidatorService, VerificationCodeService verificationCodeService) {
+    public CandidateAuthManager(CandidateService candidateService, AuthValidatorService authValidatorService, VerificationCodeService verificationCodeService, ModelMapper modelMapper) {
         this.candidateService = candidateService;
         this.authValidatorService = authValidatorService;
         this.verificationCodeService = verificationCodeService;
+
+        this.modelMapper = modelMapper;
     }
 
 
@@ -49,7 +53,7 @@ public class CandidateAuthManager implements CandidateAuthService {
 
 
     private DataResult<Candidate> candidateRegister(CandidatesRegisterDto candidatesRegisterDto){
-        Candidate candidate = new Candidate(candidatesRegisterDto.getEmail(),candidatesRegisterDto.getPassword(),candidatesRegisterDto.getFirstName(),candidatesRegisterDto.getLastName(),candidatesRegisterDto.getIdentityNumber(),candidatesRegisterDto.getBirthDate());
+        Candidate candidate = modelMapper.map(candidatesRegisterDto,Candidate.class);
         Result result =this.candidateService.add(candidate);
         if (!result.isSuccess()){
             return new ErrorDataResult<>(null,result.getMessage());

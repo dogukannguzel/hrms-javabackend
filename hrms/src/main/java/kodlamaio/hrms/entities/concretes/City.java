@@ -23,10 +23,17 @@ public class City {
     @Column(name = "id")
     private int id;
 
+    public City(int id) {
+        this.id = id;
+    }
+
     @Column(name = "city")
     private String city;
 
     @OneToMany(mappedBy = "city")
     private List<JobAdvertisement> jobAdvertisements;
+
+
+
 
 }

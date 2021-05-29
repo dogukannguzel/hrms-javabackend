@@ -14,6 +14,7 @@ public class EmployerRegisterDto {
 
     @NotBlank(message = "Şirket adı boş bırakılamaz.")
     private String companyName;
+
     @NotBlank(message = "Web sitesi adresi boş bırakılamaz.")
     private String webAddress;
 

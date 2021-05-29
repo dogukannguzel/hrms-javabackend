@@ -2,15 +2,14 @@ package kodlamaio.hrms.api.controllers;
 
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
-import kodlamaio.hrms.business.constrains.Message;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
-import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
-import org.springframework.data.domain.Sort;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementReadDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementRequestDto;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,15 +29,13 @@ public class JobAdvertisementsController {
     }
 
     @GetMapping("/getAllByEnableTrue")
-    public DataResult<List<JobAdvertisement>> getAllByEnableTrue() {
+    public DataResult<List<JobAdvertisementReadDto>> getAllByEnableTrue() {
         return this.jobAdvertisementService.getAllByEnableTrue();
     }
 
     @PostMapping("/add")
-    public Result add(@RequestBody  JobAdvertisement jobAdvertisement) {
-        this.jobAdvertisementService.add(jobAdvertisement);
-        System.out.println(jobAdvertisement.getEmployer().getCompanyName());
-        return new SuccessResult("İş pozisyonu eklendi");
+    public Result add(@RequestBody @Valid JobAdvertisementRequestDto jobAdvertisement) {
+        return  this.jobAdvertisementService.add(jobAdvertisement);
     }
 
     @PutMapping("/setEnable")
@@ -50,9 +47,17 @@ public class JobAdvertisementsController {
     public DataResult<List<JobAdvertisement>> getAllSorted() {
         return this.jobAdvertisementService.getAllSorted();
     }
+
+
     @GetMapping("/getAllByEmployerId/{id}")
     public  DataResult<List<JobAdvertisement>> getByEmployerId(@PathVariable  int id) {
         return this.jobAdvertisementService.getByEmployerId(id);
     }
+
+    @GetMapping("/getAllByEnableTrueAndEmployerId/{employerİd}")
+    public DataResult<List<JobAdvertisementReadDto>> getAllByEnableTrueAndEmployerId(@PathVariable int employerİd) {
+        return this.jobAdvertisementService.getAllByEnableTrueAndEmployerId(employerİd);
+    }
+
 
 }

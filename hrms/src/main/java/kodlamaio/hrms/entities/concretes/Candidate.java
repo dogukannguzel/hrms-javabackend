@@ -30,14 +30,4 @@ public class Candidate extends User {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    public Candidate( String email, String password, String firstName,String lastName,String identificationNumber,LocalDate birthDate) {
-        super(email, password);
-        this.firstName = firstName;
-        this.identificationNumber=identificationNumber;
-        this.birthDate=birthDate;
-        this.lastName=lastName;
-    }
-
-
-
 }

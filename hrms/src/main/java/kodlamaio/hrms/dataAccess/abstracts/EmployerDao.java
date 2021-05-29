@@ -1,9 +1,7 @@
 package kodlamaio.hrms.dataAccess.abstracts;
 
-import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.concretes.Company;
 
-import java.util.Optional;
-
-public interface EmployerDao extends UserDao<Employer> {
+public interface EmployerDao extends UserDao<Company> {
 
 }

@@ -2,7 +2,7 @@ package kodlamaio.hrms.api.controllers;
 
 import kodlamaio.hrms.business.abstracts.auth.CandidateAuthService;
 import kodlamaio.hrms.business.abstracts.auth.EmployerAuthService;
-import kodlamaio.hrms.business.abstracts.auth.VerifyService;
+import kodlamaio.hrms.business.abstracts.VerifyService;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.dtos.CandidatesRegisterDto;
 import kodlamaio.hrms.entities.dtos.EmployerRegisterDto;
@@ -36,7 +36,6 @@ public class AuthController {
 
     @GetMapping("/verify/{code}")
     public Result verify(@PathVariable  String code){
-        System.out.println(code);
         return this.verifyService.verify(code);
     }
 

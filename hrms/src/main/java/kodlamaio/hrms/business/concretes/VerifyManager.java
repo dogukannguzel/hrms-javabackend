@@ -1,6 +1,6 @@
 package kodlamaio.hrms.business.concretes;
 
-import kodlamaio.hrms.business.abstracts.auth.VerifyService;
+import kodlamaio.hrms.business.abstracts.VerifyService;
 import kodlamaio.hrms.business.constrains.Message;
 import kodlamaio.hrms.core.utilities.businessEngine.BusinessRun;
 import kodlamaio.hrms.core.utilities.results.*;
@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
+
 @Service
 public class VerifyManager implements VerifyService {
 
@@ -24,11 +26,9 @@ public class VerifyManager implements VerifyService {
     @Override
     public Result verify(String code) {
         Result run = BusinessRun.run(codeCheck(code));
-        System.out.println(codeCheck(code));
         if (!run.isSuccess()){
            return run;
         }
-
 
         VerificationCode verificationCode=getObject(code);
         verificationCode.setVerified(true);
@@ -46,6 +46,8 @@ public class VerifyManager implements VerifyService {
 
     private Result isİtVerified(String code){
         VerificationCode verificationCode = getObject(code);
+
+
         if (verificationCode.isVerified()){
             return new ErrorResult(Message.userAuthenticadet);
         }

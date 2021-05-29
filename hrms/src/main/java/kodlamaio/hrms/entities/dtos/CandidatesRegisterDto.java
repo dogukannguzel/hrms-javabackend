@@ -22,7 +22,7 @@ public class CandidatesRegisterDto {
 
     @NotBlank(message="Tc kimlik no alanı boş olamaz")
     @Size(min = 11, max=11, message = "TCKimlik No 11 hane olmalıdır")
-    private String identityNumber;
+    private String identificationNumber;
 
     @NotNull(message = "Doğum tarihi alanı boş bırakılamaz ")
     private LocalDate birthDate;

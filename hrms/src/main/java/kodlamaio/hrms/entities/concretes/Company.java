@@ -19,7 +19,7 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name = "id")
 @Table(name = "employers")
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
-public class Employer extends User {
+public class Company extends User {
 
     @Column(name = "company_name")
     private String companyName;
@@ -30,16 +30,10 @@ public class Employer extends User {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "employer")
+    @OneToMany(mappedBy = "company")
     private List<JobAdvertisement> jobAdvertisements;
 
 
-    public Employer(String email, String password, String companyName, String webAddress, String phoneNumber) {
-        super(email, password);
-        this.companyName = companyName;
-        this.webAddress = webAddress;
-        this.phoneNumber = phoneNumber;
-    }
 
 
 

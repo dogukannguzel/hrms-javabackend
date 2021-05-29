@@ -24,4 +24,9 @@ public class Message {
     public static String codeExist = "Aktivasyon kodunuz yanlış!";
     public static String userAuthenticadet="Bu kullanıcı zaten doğrulanmış";
     public static String successVerify="Doğrulama işlemi başarılı";
+
+    public static String jobAdvertisementListed = "İş ilanları Listelendi";
+    public static String setJobAdvertisement = "İş ilanı pasif hale getirildi";
+    public static String setJobAdvertisementTrue = "İş ilanı aktif hale getirildi";
+    public static String jobAdvertisementAdded = "İş ilanı eklendi";
 }
