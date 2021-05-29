@@ -5,7 +5,7 @@ import kodlamaio.hrms.business.abstracts.auth.EmployerAuthService;
 import kodlamaio.hrms.business.abstracts.VerifyService;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.dtos.CandidatesRegisterDto;
-import kodlamaio.hrms.entities.dtos.EmployerRegisterDto;
+import kodlamaio.hrms.entities.dtos.CompanyRegisterDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +30,8 @@ public class AuthController {
     }
 
     @PostMapping("/register/employer")
-    public Result registerCandidates(@RequestBody @Valid EmployerRegisterDto employerRegisterDto){
-        return this.employerAuthService.register(employerRegisterDto);
+    public Result registerCandidates(@RequestBody @Valid CompanyRegisterDto companyRegisterDto){
+        return this.employerAuthService.register(companyRegisterDto);
     }
 
     @GetMapping("/verify/{code}")

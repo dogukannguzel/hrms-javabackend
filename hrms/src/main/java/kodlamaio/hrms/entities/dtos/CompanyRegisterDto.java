@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployerRegisterDto {
+public class CompanyRegisterDto {
 
     @NotBlank(message = "Şirket adı boş bırakılamaz.")
     private String companyName;

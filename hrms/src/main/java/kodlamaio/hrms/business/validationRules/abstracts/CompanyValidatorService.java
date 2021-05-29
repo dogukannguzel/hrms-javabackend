@@ -4,6 +4,6 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Company;
 
 
-public interface EmployerValidatorService {
+public interface CompanyValidatorService {
     Result emailCheck(Company employer);
 }

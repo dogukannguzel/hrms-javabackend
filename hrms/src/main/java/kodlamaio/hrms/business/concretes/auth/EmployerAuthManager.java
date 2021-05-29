@@ -1,13 +1,13 @@
 package kodlamaio.hrms.business.concretes.auth;
 
-import kodlamaio.hrms.business.abstracts.EmployerService;
+import kodlamaio.hrms.business.abstracts.CompanyService;
 import kodlamaio.hrms.business.abstracts.VerificationCodeService;
 import kodlamaio.hrms.business.abstracts.auth.EmployerAuthService;
 import kodlamaio.hrms.business.validationRules.abstracts.AuthValidatorService;
 import kodlamaio.hrms.core.utilities.businessEngine.BusinessRun;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.entities.concretes.Company;
-import kodlamaio.hrms.entities.dtos.EmployerRegisterDto;
+import kodlamaio.hrms.entities.dtos.CompanyRegisterDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,37 +16,37 @@ import org.springframework.stereotype.Service;
 public class EmployerAuthManager implements EmployerAuthService {
 
     private final AuthValidatorService authValidatorService;
-    private final EmployerService employerService;
+    private final CompanyService companyService;
     private final VerificationCodeService verificationCodeService;
     private final ModelMapper modelMapper;
     @Autowired
-    public EmployerAuthManager(AuthValidatorService authValidatorService, EmployerService employerService, VerificationCodeService verificationCodeService, ModelMapper modelMapper) {
+    public EmployerAuthManager(AuthValidatorService authValidatorService, CompanyService companyService, VerificationCodeService verificationCodeService, ModelMapper modelMapper) {
         this.authValidatorService = authValidatorService;
-        this.employerService = employerService;
+        this.companyService = companyService;
         this.verificationCodeService = verificationCodeService;
         this.modelMapper = modelMapper;
     }
 
 
     @Override
-    public Result register(EmployerRegisterDto employerRegisterDto) {
+    public Result register(CompanyRegisterDto companyRegisterDto) {
 
-        Result result = BusinessRun.run(authValidatorService.passwordCondirmed(employerRegisterDto.getPassword(),employerRegisterDto.getConfirmPassword()));
+        Result result = BusinessRun.run(authValidatorService.passwordCondirmed(companyRegisterDto.getPassword(), companyRegisterDto.getConfirmPassword()));
 
         if (!result.isSuccess()){
             return  result;
         }
 
-        Result employerValidate =employerRegister(employerRegisterDto);
+        Result employerValidate =employerRegister(companyRegisterDto);
         if (!employerValidate.isSuccess()) {
             return employerValidate;
         }
         return employerValidate;
     }
 
-    private Result employerRegister(EmployerRegisterDto employerRegisterDto){
+    private Result employerRegister(CompanyRegisterDto companyRegisterDto){
 
-        DataResult<Company> result = this.candidateRegister(employerRegisterDto);
+        DataResult<Company> result = this.candidateRegister(companyRegisterDto);
        if (!result.isSuccess()){
             return result;
         }
@@ -59,13 +59,13 @@ public class EmployerAuthManager implements EmployerAuthService {
 
 
 
-    private DataResult<Company> candidateRegister(EmployerRegisterDto employerRegisterDto){
+    private DataResult<Company> candidateRegister(CompanyRegisterDto companyRegisterDto){
 
        // Employer employer = new Employer(employerRegisterDto.getEmail(),employerRegisterDto.getPassword(),employerRegisterDto.getCompanyName(),employerRegisterDto.getWebAddress(),employerRegisterDto.getPhoneNumber());
 
-        Company company = modelMapper.map(employerRegisterDto, Company.class);
+        Company company = modelMapper.map(companyRegisterDto, Company.class);
 
-        Result result=   this.employerService.add(company);
+        Result result=   this.companyService.add(company);
 
         if (!result.isSuccess()){
             return new ErrorDataResult<>(null, result.getMessage());

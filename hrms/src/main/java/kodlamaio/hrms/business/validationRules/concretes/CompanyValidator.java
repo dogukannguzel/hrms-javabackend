@@ -1,7 +1,7 @@
 package kodlamaio.hrms.business.validationRules.concretes;
 
 import kodlamaio.hrms.business.constrains.Message;
-import kodlamaio.hrms.business.validationRules.abstracts.EmployerValidatorService;
+import kodlamaio.hrms.business.validationRules.abstracts.CompanyValidatorService;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
@@ -9,7 +9,7 @@ import kodlamaio.hrms.entities.concretes.Company;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmployerValidator  implements EmployerValidatorService {
+public class CompanyValidator implements CompanyValidatorService {
 
 
     @Override
