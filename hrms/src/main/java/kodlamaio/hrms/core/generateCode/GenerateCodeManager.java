@@ -1,11 +1,12 @@
 package kodlamaio.hrms.core.generateCode;
 
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+
 
 import java.util.UUID;
 
-@Service
+@Component
 public class GenerateCodeManager implements GenerateCodeService {
     @Override
     public String generateCode() {

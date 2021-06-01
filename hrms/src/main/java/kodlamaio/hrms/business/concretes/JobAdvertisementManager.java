@@ -8,14 +8,14 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
-import kodlamaio.hrms.entities.dtos.JobAdvertisementReadDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementGetDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementRequestDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementTableDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService {
@@ -35,12 +35,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
         return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(),"İş ilanları listelendi");
     }
 
-    @Override
-    public DataResult<List<JobAdvertisementReadDto>> getAllByEnableTrue() {
-        List<JobAdvertisement> jobAdvertisements = this.jobAdvertisementDao.getAllByEnableTrue();
 
-        return   new SuccessDataResult<List<JobAdvertisementReadDto>>(jobAdvertisementToDto(jobAdvertisements),Message.jobAdvertisementListed);
-    }
 
     @Override
     public Result add(JobAdvertisementRequestDto jobAdvertisementRequestDto) {
@@ -72,17 +67,25 @@ public class JobAdvertisementManager implements JobAdvertisementService {
     }
 
     @Override
-    public DataResult<List<JobAdvertisementReadDto>> getAllByEnableTrueAndEmployerId(int employerİd) {
-        List<JobAdvertisement> jobAdvertisements=jobAdvertisementDao.getAllByEnableTrueAndCompanyId(employerİd);
+    public DataResult<List<JobAdvertisementGetDto>> getAllByEnableTrueAndEmployerId(int employerİd) {
 
-        return new SuccessDataResult<List<JobAdvertisementReadDto>>(jobAdvertisementToDto(jobAdvertisements),Message.jobAdvertisementListed);
+
+        return new SuccessDataResult<List<JobAdvertisementGetDto>>(this.jobAdvertisementDao.getByJobAdversitementTrueAndCompanyIdDto(employerİd),Message.jobAdvertisementListed) ;
+    }
+    @Override
+    public DataResult<List<JobAdvertisementGetDto>> getByJobAdversitementTrueDto() {
+        return   new SuccessDataResult<List<JobAdvertisementGetDto>>(this.jobAdvertisementDao.getByJobAdversitementTrueDto(),Message.jobAdvertisementListed);
     }
 
-
-    private List<JobAdvertisementReadDto> jobAdvertisementToDto(List<JobAdvertisement> jobAdvertisements){
-        return jobAdvertisements.stream()
-                .map(jobAdvertisement->modelMapper.map(jobAdvertisement,JobAdvertisementReadDto.class))
-                .collect(Collectors.toList());
+    @Override
+    public  DataResult<List<JobAdvertisementGetDto>> getByJobAdversitementDto() {
+        return new SuccessDataResult<List<JobAdvertisementGetDto>>(this.jobAdvertisementDao.getByJobAdversitementDto(),Message.jobAdvertisementListed);
     }
+
+    @Override
+    public DataResult<List<JobAdvertisementTableDto>> getByJobAdversitementTableDto() {
+        return new SuccessDataResult<List<JobAdvertisementTableDto>>(this.jobAdvertisementDao.getByJobAdversitementTableDto(),Message.jobAdvertisementListed);
+    }
+
 
 }

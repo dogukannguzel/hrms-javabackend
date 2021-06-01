@@ -46,8 +46,6 @@ public class VerifyManager implements VerifyService {
 
     private Result isİtVerified(String code){
         VerificationCode verificationCode = getObject(code);
-
-
         if (verificationCode.isVerified()){
             return new ErrorResult(Message.userAuthenticadet);
         }

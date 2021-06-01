@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.dtos;
 
+import kodlamaio.hrms.core.validation.annotations.ExistByEmail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class CompanyRegisterDto {
     private String webAddress;
 
     @NotBlank(message = "E mail alanı boş bırakılamaz")
+    @ExistByEmail
     private String email;
 
     @NotBlank(message = "Telefon numarası alanı boş bırakılamaz")
