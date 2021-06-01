@@ -2,7 +2,7 @@ package kodlamaio.hrms.business.concretes.auth;
 
 import kodlamaio.hrms.business.abstracts.CompanyService;
 import kodlamaio.hrms.business.abstracts.VerificationCodeService;
-import kodlamaio.hrms.business.abstracts.auth.CompanyAuthService;
+import kodlamaio.hrms.business.abstracts.auth.EmployerAuthService;
 import kodlamaio.hrms.business.validationRules.abstracts.AuthValidatorService;
 import kodlamaio.hrms.core.utilities.businessEngine.BusinessRun;
 import kodlamaio.hrms.core.utilities.results.*;
@@ -13,14 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CompanyAuthManager implements CompanyAuthService {
+public class EmployerAuthManager implements EmployerAuthService {
 
     private final AuthValidatorService authValidatorService;
     private final CompanyService companyService;
     private final VerificationCodeService verificationCodeService;
     private final ModelMapper modelMapper;
     @Autowired
-    public CompanyAuthManager(AuthValidatorService authValidatorService, CompanyService companyService, VerificationCodeService verificationCodeService, ModelMapper modelMapper) {
+    public EmployerAuthManager(AuthValidatorService authValidatorService, CompanyService companyService, VerificationCodeService verificationCodeService, ModelMapper modelMapper) {
         this.authValidatorService = authValidatorService;
         this.companyService = companyService;
         this.verificationCodeService = verificationCodeService;
@@ -61,6 +61,7 @@ public class CompanyAuthManager implements CompanyAuthService {
 
     private DataResult<Company> candidateRegister(CompanyRegisterDto companyRegisterDto){
 
+       // Employer employer = new Employer(employerRegisterDto.getEmail(),employerRegisterDto.getPassword(),employerRegisterDto.getCompanyName(),employerRegisterDto.getWebAddress(),employerRegisterDto.getPhoneNumber());
 
         Company company = modelMapper.map(companyRegisterDto, Company.class);
 

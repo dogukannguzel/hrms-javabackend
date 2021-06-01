@@ -8,5 +8,4 @@ import java.util.Optional;
 public interface CandidateDao extends UserDao<Candidate> {
     Optional<Candidate> findByIdentificationNumber(String identityNumber);
 
-
 }

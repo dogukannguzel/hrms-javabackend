@@ -34,10 +34,22 @@ public class CandidateManager extends UserManager<Candidate> implements Candidat
 
     @Override
     public Result add(Candidate candidate) {
+        Result result = BusinessRun.run(identityNumberExist(candidate.getIdentificationNumber()),
+                checkİfRealPerson(candidate));
+        if (!result.isSuccess()) {
+            return result;
+        }
         return super.add(candidate);
     }
 
 
+    private  Result identityNumberExist(String identityNumber){
+        if (this.candidateDao.findByIdentificationNumber(identityNumber).isPresent()){
+            System.out.println("tc kontrol");
+            return new ErrorResult(Message.identityNumberExist);
+        }
+        return new SuccessResult();
+    }
 
     private Result checkİfRealPerson(Candidate candidate)  {
 

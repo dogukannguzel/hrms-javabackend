@@ -3,9 +3,8 @@ package kodlamaio.hrms.business.abstracts;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
-import kodlamaio.hrms.entities.dtos.JobAdvertisementGetDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementReadDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementRequestDto;
-import kodlamaio.hrms.entities.dtos.JobAdvertisementTableDto;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ public interface JobAdvertisementService {
 
     DataResult<List<JobAdvertisement>> getAll();
 
-
+    DataResult<List<JobAdvertisementReadDto>> getAllByEnableTrue();
 
     Result add(JobAdvertisementRequestDto jobAdvertisement);
 
@@ -23,11 +22,6 @@ public interface JobAdvertisementService {
 
     DataResult<List<JobAdvertisement>> getByEmployerId(int id);
 
-    DataResult<List<JobAdvertisementGetDto>> getAllByEnableTrueAndEmployerId(int employerİd);
+    DataResult<List<JobAdvertisementReadDto>> getAllByEnableTrueAndEmployerId(int employerİd);
 
-    DataResult<List<JobAdvertisementGetDto>> getByJobAdversitementTrueDto();
-
-    DataResult<List<JobAdvertisementGetDto>> getByJobAdversitementDto();
-
-    DataResult<List<JobAdvertisementTableDto>> getByJobAdversitementTableDto();
 }

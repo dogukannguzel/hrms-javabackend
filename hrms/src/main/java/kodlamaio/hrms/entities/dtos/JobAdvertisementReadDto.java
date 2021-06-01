@@ -10,11 +10,9 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class JobAdvertisementGetDto {
-
-    private int id;
+@NoArgsConstructor
+public class JobAdvertisementReadDto {
 
     private String jobDescription;
 
@@ -28,14 +26,14 @@ public class JobAdvertisementGetDto {
 
     private String city;
 
+    private String id;
+
     private String companyName;
 
     private String jobPosition;
 
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date createdDate;
-
-
 
 
 

@@ -11,6 +11,7 @@ import kodlamaio.hrms.entities.concretes.VerificationCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
@@ -27,10 +28,10 @@ public class VerificationCodeManager implements VerificationCodeService {
 
     @Override
     public Result saveCode(User user) {
-       String uuıd=this.generateCodeService.generateCode();
+        String uuıd=this.generateCodeService.generateCode();
         int validity=60*5*1000;
         System.out.println(user.getId());
-        VerificationCode verificationCode = new VerificationCode(user,uuıd,new Date(System.currentTimeMillis()+validity));
+        VerificationCode verificationCode = new VerificationCode(user.getId(),uuıd,new Date(System.currentTimeMillis()+validity));
         this.verificationCodeDao.save(verificationCode);
         System.out.println("http://localhost:8080/api/auth/verify"+uuıd);
         return new SuccessResult(Message.codeToMail);

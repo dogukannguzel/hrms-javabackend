@@ -1,7 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
 
-import kodlamaio.hrms.entities.abstracts.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,8 +21,9 @@ public  class VerificationCode {
     @Column(name = "id")
     private int id;
 
-   // @Column(name = "user_id")
-   // private int userİd;
+    @Column(name = "user_id")
+    private int userİd;
+
 
     @Column(name = "code")
     private String code;
@@ -40,14 +40,7 @@ public  class VerificationCode {
     @Column(name="expiration_date")
     private Date expirationDate;
 
-    @Column(name = "code_status")
-    private boolean code_status;
-
-    @ManyToOne()
-    @JoinColumn(name = "user_id")
-    private User userİd;
-
-    public VerificationCode(User userİd, String code,Date expirationDate) {
+    public VerificationCode(int userİd, String code,Date expirationDate) {
         this.userİd = userİd;
         this.code = code;
         this.expirationDate=expirationDate;

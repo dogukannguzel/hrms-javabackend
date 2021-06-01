@@ -1,7 +1,5 @@
 package kodlamaio.hrms.entities.dtos;
 
-import kodlamaio.hrms.core.validation.annotations.ExistByEmail;
-import kodlamaio.hrms.core.validation.annotations.ExistByİdentificationNumber;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +22,6 @@ public class CandidatesRegisterDto {
 
     @NotBlank(message="Tc kimlik no alanı boş olamaz")
     @Size(min = 11, max=11, message = "TCKimlik No 11 hane olmalıdır")
-    @ExistByİdentificationNumber
     private String identificationNumber;
 
     @NotNull(message = "Doğum tarihi alanı boş bırakılamaz ")
@@ -32,7 +29,6 @@ public class CandidatesRegisterDto {
 
     @Email(message = "E mail adresinizi doğru formatta giriniz")
     @NotBlank(message = "E mail adresi boş olamaz ")
-    @ExistByEmail
     private String email;
 
     @NotBlank(message = "Parola boş olamaz")

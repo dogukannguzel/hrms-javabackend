@@ -1,7 +1,7 @@
 package kodlamaio.hrms.api.controllers;
 
 import kodlamaio.hrms.business.abstracts.auth.CandidateAuthService;
-import kodlamaio.hrms.business.abstracts.auth.CompanyAuthService;
+import kodlamaio.hrms.business.abstracts.auth.EmployerAuthService;
 import kodlamaio.hrms.business.abstracts.VerifyService;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.dtos.CandidatesRegisterDto;
@@ -16,12 +16,12 @@ import javax.validation.Valid;
 public class AuthController {
     private final VerifyService verifyService;
     private final CandidateAuthService candidateAuthService;
-    private final CompanyAuthService companyAuthService;
+    private final EmployerAuthService employerAuthService;
     @Autowired
-    public AuthController(VerifyService verifyService, CandidateAuthService candidateAuthService, CompanyAuthService companyAuthService) {
+    public AuthController(VerifyService verifyService, CandidateAuthService candidateAuthService, EmployerAuthService employerAuthService) {
         this.verifyService = verifyService;
         this.candidateAuthService = candidateAuthService;
-        this.companyAuthService = companyAuthService;
+        this.employerAuthService = employerAuthService;
     }
 
     @PostMapping("/register/candidate")
@@ -31,7 +31,7 @@ public class AuthController {
 
     @PostMapping("/register/employer")
     public Result registerCandidates(@RequestBody @Valid CompanyRegisterDto companyRegisterDto){
-        return this.companyAuthService.register(companyRegisterDto);
+        return this.employerAuthService.register(companyRegisterDto);
     }
 
     @GetMapping("/verify/{code}")
