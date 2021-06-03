@@ -14,6 +14,8 @@ public class SuccessDataResult<T> extends DataResult<T>{
         super(null,true,message);
     }
 
-
+    public SuccessDataResult(T data){
+        super(data,true);
+    }
 
 }
