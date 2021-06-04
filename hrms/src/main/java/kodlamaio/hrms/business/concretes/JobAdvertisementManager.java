@@ -9,7 +9,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementGetDto;
-import kodlamaio.hrms.entities.dtos.JobAdvertisementRequestDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementPostDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementTableDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
@@ -38,8 +38,8 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 
     @Override
-    public Result add(JobAdvertisementRequestDto jobAdvertisementRequestDto) {
-        JobAdvertisement jobAdvertisement = modelMapper.map(jobAdvertisementRequestDto,JobAdvertisement.class);
+    public Result add(JobAdvertisementPostDto jobAdvertisementPostDto) {
+        JobAdvertisement jobAdvertisement = modelMapper.map(jobAdvertisementPostDto,JobAdvertisement.class);
         this.jobAdvertisementDao.save(jobAdvertisement);
         return new SuccessResult(Message.jobAdvertisementAdded);
     }

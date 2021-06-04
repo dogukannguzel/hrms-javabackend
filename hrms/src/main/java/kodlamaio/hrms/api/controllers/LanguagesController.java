@@ -5,7 +5,10 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Education;
 import kodlamaio.hrms.entities.concretes.Language;
+import kodlamaio.hrms.entities.concretes.Technology;
+import kodlamaio.hrms.entities.dtos.LanguagePostDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,14 +25,15 @@ public class LanguagesController {
     }
 
     @GetMapping("/getall")
-    public DataResult<List<Language>> getAll() {
-        return this.languageService.getAll() ;
+    public ResponseEntity<?> getAll() {
+        return ResponseEntity.ok(this.languageService.getAll());
     }
 
-    @PostMapping("/add")
-    public Result add(@RequestBody Language language) {
 
-        return this.languageService.add(language);
+    @PostMapping("/add")
+    public ResponseEntity<?> add(@RequestBody LanguagePostDto languagePostDto) {
+
+        return ResponseEntity.ok(this.languageService.add(languagePostDto));
     }
 
 

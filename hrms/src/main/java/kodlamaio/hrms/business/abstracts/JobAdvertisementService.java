@@ -4,7 +4,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementGetDto;
-import kodlamaio.hrms.entities.dtos.JobAdvertisementRequestDto;
+import kodlamaio.hrms.entities.dtos.JobAdvertisementPostDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementTableDto;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public interface JobAdvertisementService {
 
 
 
-    Result add(JobAdvertisementRequestDto jobAdvertisement);
+    Result add(JobAdvertisementPostDto jobAdvertisement);
 
    DataResult<List<JobAdvertisement>> getAllSorted();
 

@@ -10,7 +10,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class JobAdvertisementRequestDto {
+public class JobAdvertisementPostDto {
+
+    // iş ilanı eklemek için dto
+
     @NotNull(message = "Şehir alanı boş bırakılamaz")
     private int cityId;
 
@@ -33,8 +36,6 @@ public class JobAdvertisementRequestDto {
 
     @NotNull(message = "İş ilanı bitiş süresi alanı boş bırakılamaz ")
     private LocalDate applicationDeadline;
-
-
 
     private boolean enable;
 }

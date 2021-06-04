@@ -6,6 +6,7 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +23,9 @@ public class CandidatesController {
     }
 
     @GetMapping("/getall")
-    public DataResult<List<Candidate>> getAll(){
+    public ResponseEntity<?> getAll(){
 
-        return this.candidateService.getAll();
+        return ResponseEntity.ok(this.candidateService.getAll());
 
     }
 

@@ -1,6 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.ResumeService;
+import kodlamaio.hrms.business.constrains.Message;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -8,6 +9,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.utilities.ımageService.ImageService;
 import kodlamaio.hrms.dataAccess.abstracts.ResumDao;
 import kodlamaio.hrms.entities.concretes.Resume;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,10 +22,13 @@ import java.util.Map;
 public class ResumeManager implements ResumeService {
     private final ImageService imageService;
     private final ResumDao resumDao;
+    private final ModelMapper modelMapper;
+
     @Autowired
-    public ResumeManager(ImageService imageService, ResumDao resumDao) {
+    public ResumeManager(ImageService imageService, ResumDao resumDao, ModelMapper modelMapper) {
         this.imageService = imageService;
         this.resumDao = resumDao;
+        this.modelMapper = modelMapper;
     }
 
 
@@ -34,9 +39,23 @@ public class ResumeManager implements ResumeService {
 
     @Override
     public Result add(Resume resume)  {
+        if (resume.getLanguages() != null) {
+            resume.getLanguages().forEach(lang -> lang.setResume(resume));
+        }
+
+        if (resume.getEducations()!=null){
+            resume.getEducations().forEach(edu->edu.setResume(resume));
+        }
+        if (resume.getJobExperiences()!=null){
+            resume.getJobExperiences().forEach(exp->exp.setResume(resume));
+        }
+        if (resume.getTechnologies()!=null){
+            resume.getTechnologies().forEach(tec->tec.setResume(resume));
+        }
+
 
         this.resumDao.save(resume);
-        return new SuccessResult("Kayıt yapıldı");
+        return new SuccessResult(Message.resumeAdded);
     }
 
     @Override

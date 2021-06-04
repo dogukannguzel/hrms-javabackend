@@ -29,4 +29,9 @@ public class Message {
     public static String setJobAdvertisement = "İş ilanı pasif hale getirildi";
     public static String setJobAdvertisementTrue = "İş ilanı aktif hale getirildi";
     public static String jobAdvertisementAdded = "İş ilanı eklendi";
+
+
+    public static String resumeAdded = "Cv oluşturuldu";
+
+
 }

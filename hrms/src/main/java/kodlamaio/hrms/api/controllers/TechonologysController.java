@@ -1,11 +1,10 @@
 package kodlamaio.hrms.api.controllers;
 
 import kodlamaio.hrms.business.abstracts.TechonologyService;
-import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.Education;
 import kodlamaio.hrms.entities.concretes.Technology;
+import kodlamaio.hrms.entities.dtos.TechonologyPostDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,14 +19,14 @@ public class TechonologysController {
     }
 
     @GetMapping("/getall")
-    public DataResult<List<Technology>> getAll() {
-        return this.techonologyService.getAll() ;
+    public ResponseEntity<?> getAll() {
+        return ResponseEntity.ok(this.techonologyService.getAll()) ;
     }
 
     @PostMapping("/add")
-    public Result add(@RequestBody Technology technology) {
+    public ResponseEntity<?> add(@RequestBody TechonologyPostDto techonologyPostDto) {
 
-        return this.techonologyService.add(technology);
+        return ResponseEntity.ok(this.techonologyService.add(techonologyPostDto));
     }
 
 

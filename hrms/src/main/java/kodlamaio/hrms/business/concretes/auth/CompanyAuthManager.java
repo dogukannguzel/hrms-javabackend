@@ -5,6 +5,7 @@ import kodlamaio.hrms.business.abstracts.VerificationCodeService;
 import kodlamaio.hrms.business.abstracts.auth.CompanyAuthService;
 import kodlamaio.hrms.business.validationRules.abstracts.AuthValidatorService;
 import kodlamaio.hrms.core.utilities.businessEngine.BusinessRun;
+import kodlamaio.hrms.core.utilities.mapper.CompanyMapper;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.entities.concretes.Company;
 import kodlamaio.hrms.entities.dtos.CompanyRegisterDto;
@@ -18,13 +19,15 @@ public class CompanyAuthManager implements CompanyAuthService {
     private final AuthValidatorService authValidatorService;
     private final CompanyService companyService;
     private final VerificationCodeService verificationCodeService;
-    private final ModelMapper modelMapper;
+
+    private final CompanyMapper companyMapper;
+
     @Autowired
-    public CompanyAuthManager(AuthValidatorService authValidatorService, CompanyService companyService, VerificationCodeService verificationCodeService, ModelMapper modelMapper) {
+    public CompanyAuthManager(AuthValidatorService authValidatorService, CompanyService companyService, VerificationCodeService verificationCodeService,  CompanyMapper companyMapper) {
         this.authValidatorService = authValidatorService;
         this.companyService = companyService;
         this.verificationCodeService = verificationCodeService;
-        this.modelMapper = modelMapper;
+        this.companyMapper = companyMapper;
     }
 
 
@@ -62,7 +65,7 @@ public class CompanyAuthManager implements CompanyAuthService {
     private DataResult<Company> candidateRegister(CompanyRegisterDto companyRegisterDto){
 
 
-        Company company = modelMapper.map(companyRegisterDto, Company.class);
+        Company company = this.companyMapper.dtoToModel(companyRegisterDto);
 
         Result result=   this.companyService.add(company);
 

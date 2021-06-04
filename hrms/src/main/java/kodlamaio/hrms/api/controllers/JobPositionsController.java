@@ -5,7 +5,9 @@ import kodlamaio.hrms.business.abstracts.JobPositionService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobPosition;
+import kodlamaio.hrms.entities.dtos.JobPositionPostDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,13 +24,13 @@ public class JobPositionsController {
     }
 
     @GetMapping("/getall")
-    public DataResult<List<JobPosition>> getAll(){
-        return this.jobPositionService.getAll();
+    public ResponseEntity<?> getAll(){
+        return ResponseEntity.ok(this.jobPositionService.getAll());
     }
 
     @PostMapping("/add")
-    public Result add(@RequestBody JobPosition jobPosition){
-        return this.jobPositionService.add(jobPosition);
+    public ResponseEntity<?> add(@RequestBody JobPositionPostDto jobPositionPostDto){
+        return ResponseEntity.ok(this.jobPositionService.add(jobPositionPostDto));
     }
 
 

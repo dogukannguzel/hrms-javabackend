@@ -23,13 +23,10 @@ public class City {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "city")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "city")
     private List<JobAdvertisement> jobAdvertisements;
-
-
-
 
 }

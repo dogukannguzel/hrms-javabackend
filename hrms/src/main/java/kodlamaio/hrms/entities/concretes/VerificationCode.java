@@ -29,7 +29,7 @@ public  class VerificationCode {
     private String code;
 
     @Column(name = "is_verified")
-    private boolean isVerified=false;
+    private boolean isVerified;
 
     @Column(name = "created_date")
     private LocalDate createdDate=LocalDate.now();

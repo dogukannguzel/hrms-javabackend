@@ -14,6 +14,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class JobAdvertisementGetDto {
 
+    //Tüm bilgiler için dto
+
     private int id;
 
     private String jobDescription;

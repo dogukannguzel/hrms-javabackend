@@ -4,7 +4,9 @@ import kodlamaio.hrms.business.abstracts.JobExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobExperience;
+import kodlamaio.hrms.entities.dtos.JobExperiencePostDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,18 +22,16 @@ public class JobExperiencesControllers {
         this.jobExperienceService = jobExperienceService;
     }
 
-
-
     @GetMapping("/getall")
-    public DataResult<List<JobExperience>> getAll() {
-        return this.jobExperienceService.getAll();
+    public ResponseEntity<?> getAll() {
+        return ResponseEntity.ok(this.jobExperienceService.getAll());
     }
 
 
     @PostMapping("/add")
-    public Result add(@RequestBody JobExperience jobExperience) {
+    public ResponseEntity<?> add(@RequestBody JobExperiencePostDto jobExperiencePostDto) {
 
-        return this.jobExperienceService.add(jobExperience);
+        return ResponseEntity.ok(this.jobExperienceService.add(jobExperiencePostDto));
     }
 
 

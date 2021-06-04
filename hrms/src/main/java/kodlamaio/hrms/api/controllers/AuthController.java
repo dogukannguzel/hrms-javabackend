@@ -7,6 +7,7 @@ import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.dtos.CandidatesRegisterDto;
 import kodlamaio.hrms.entities.dtos.CompanyRegisterDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,18 +26,18 @@ public class AuthController {
     }
 
     @PostMapping("/register/candidate")
-    public Result registerCandidates(@RequestBody @Valid CandidatesRegisterDto candidatesRegisterDto){
-        return this.candidateAuthService.register(candidatesRegisterDto);
+    public ResponseEntity<?> registerCandidates(@RequestBody @Valid CandidatesRegisterDto candidatesRegisterDto){
+        return ResponseEntity.ok(this.candidateAuthService.register(candidatesRegisterDto));
     }
 
     @PostMapping("/register/employer")
-    public Result registerCandidates(@RequestBody @Valid CompanyRegisterDto companyRegisterDto){
-        return this.companyAuthService.register(companyRegisterDto);
+    public ResponseEntity<?> registerCandidates(@RequestBody @Valid CompanyRegisterDto companyRegisterDto){
+        return ResponseEntity.ok(this.companyAuthService.register(companyRegisterDto));
     }
 
     @GetMapping("/verify/{code}")
-    public Result verify(@PathVariable  String code){
-        return this.verifyService.verify(code);
+    public ResponseEntity<?> verify(@PathVariable  String code){
+        return ResponseEntity.ok(this.verifyService.verify(code));
     }
 
 }

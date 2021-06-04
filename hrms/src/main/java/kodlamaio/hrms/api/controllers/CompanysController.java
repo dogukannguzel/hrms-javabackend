@@ -4,6 +4,7 @@ import kodlamaio.hrms.business.abstracts.CompanyService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.entities.concretes.Company;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public class CompanysController {
     }
 
     @GetMapping("/getall")
-    public DataResult<List<Company>> getAll(){
-        return this.companyService.getAll();
+    public ResponseEntity<?> getAll(){
+        return ResponseEntity.ok( this.companyService.getAll());
     }
 
 
