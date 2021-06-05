@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class CandidatesRegisterDto {
 
     @NotBlank(message="İsim Alanı Boş olamaz")

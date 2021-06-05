@@ -36,10 +36,10 @@ public class Resume {
     private String photo;
 
     @Column(name = "description")
-    private String description;
+    private String cvDescription;
 
     @Column(name = "is_active")
-    private boolean isActive=true;
+    private boolean isActive;
 
     @OneToMany(mappedBy = "resume")
     private List<Language> languages;

@@ -4,28 +4,30 @@ import kodlamaio.hrms.business.abstracts.VerifyService;
 import kodlamaio.hrms.business.constrains.Message;
 import kodlamaio.hrms.core.utilities.businessEngine.BusinessRun;
 import kodlamaio.hrms.core.utilities.results.*;
+import kodlamaio.hrms.dataAccess.abstracts.UserDao;
 import kodlamaio.hrms.dataAccess.abstracts.VerificationCodeDao;
 import kodlamaio.hrms.entities.concretes.VerificationCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Service
 public class VerifyManager implements VerifyService {
 
     private final VerificationCodeDao verificationCodeDao;
+    private final UserDao userDao;
 
     @Autowired
-    public VerifyManager(VerificationCodeDao verificationCodeDao) {
+    public VerifyManager(VerificationCodeDao verificationCodeDao, UserDao userDao) {
         this.verificationCodeDao = verificationCodeDao;
+        this.userDao = userDao;
     }
 
 
     @Override
-    public Result verify(String code) {
-        Result run = BusinessRun.run(codeCheck(code));
+    public Result verify(String uuid,String code) {
+        Result run = BusinessRun.run(userCodeExist(uuid),codeCheck(code));
         if (!run.isSuccess()){
            return run;
         }
@@ -62,6 +64,14 @@ public class VerifyManager implements VerifyService {
                return run;
             }
         return new ErrorResult(Message.codeExist);
+    }
+
+
+    private Result userCodeExist(String uuid){
+        if (this.userDao.existsByUuid(uuid)){
+            return new SuccessResult();
+        }
+        return new ErrorResult("Sistemde kayıtlı olan bir kullanıcı değil !");
     }
 
 

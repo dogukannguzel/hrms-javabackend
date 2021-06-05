@@ -43,7 +43,7 @@ public  class VerificationCode {
     @Column(name = "code_status")
     private boolean code_status;
 
-    @ManyToOne()
+    @OneToOne()
     @JoinColumn(name = "user_id")
     private User userİd;
 

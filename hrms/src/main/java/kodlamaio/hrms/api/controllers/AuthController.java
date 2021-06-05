@@ -35,9 +35,11 @@ public class AuthController {
         return ResponseEntity.ok(this.companyAuthService.register(companyRegisterDto));
     }
 
-    @GetMapping("/verify/{code}")
-    public ResponseEntity<?> verify(@PathVariable  String code){
-        return ResponseEntity.ok(this.verifyService.verify(code));
+    @GetMapping("/confirm/{uuid}/{code}")
+    public ResponseEntity<?> confirm(@PathVariable("uuid") String uuid , @PathVariable("code") String verificationCode){
+
+        return ResponseEntity.ok(this.verifyService.verify(uuid,verificationCode));
+
     }
 
 }

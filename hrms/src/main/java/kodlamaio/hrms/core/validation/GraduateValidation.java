@@ -14,7 +14,7 @@ public class GraduateValidation implements ConstraintValidator<ExistByGraduate,S
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        if (this.graduateDao.findByDescription(s).isPresent()){
+        if (this.graduateDao.findByGraduateDescription(s).isPresent()){
             return false;
         }
 

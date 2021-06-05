@@ -1,8 +1,9 @@
 package kodlamaio.hrms.business.abstracts;
 
-import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.entities.concretes.Resume;
+import kodlamaio.hrms.entities.dtos.ResumeGetDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ public interface ResumeService {
 
 
 
-    DataResult<List<Resume>> getAll();
+    SuccessDataResult<List<ResumeGetDto>> getAll();
 
     Result add(Resume resume) ;
 

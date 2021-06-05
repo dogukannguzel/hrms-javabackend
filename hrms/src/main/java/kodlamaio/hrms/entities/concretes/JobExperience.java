@@ -28,9 +28,8 @@ public class JobExperience {
     @Column(name = "corporat_name")
     private String corporatName;
 
-    @ManyToOne(targetEntity = JobPosition.class,optional = false)
-    @JoinColumn(name = "job_position_id",referencedColumnName = "id",nullable = false)
-    private JobPosition jobPosition;
+    @Column(name = "position")
+    private String position;
 
     @Column(name = "started_date")
     private LocalDate startedDate;

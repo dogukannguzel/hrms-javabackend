@@ -8,6 +8,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.LanguageDao;
 import kodlamaio.hrms.entities.concretes.Language;
+import kodlamaio.hrms.entities.dtos.LanguageGetDto;
 import kodlamaio.hrms.entities.dtos.LanguagePostDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,10 @@ public  class LanguageManager implements LanguageService {
 
 
     @Override
-    public DataResult<List<Language>> getAll() {
-        return new SuccessDataResult<List<Language>>(this.languageDao.findAll(), "Data listelendi");
+    public DataResult<List<LanguageGetDto>> getAll() {
+        List<Language> languageList = this.languageDao.findAll();
+
+        return new SuccessDataResult<List<LanguageGetDto>>(this.languageMapper.modelToDtos(languageList), "Data listelendi");
     }
 
     @Override

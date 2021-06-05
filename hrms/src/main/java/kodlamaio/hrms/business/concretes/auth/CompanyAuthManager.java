@@ -13,6 +13,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class CompanyAuthManager implements CompanyAuthService {
 
@@ -40,16 +42,16 @@ public class CompanyAuthManager implements CompanyAuthService {
             return  result;
         }
 
-        Result employerValidate =employerRegister(companyRegisterDto);
+        Result employerValidate =companyRegister(companyRegisterDto);
         if (!employerValidate.isSuccess()) {
             return employerValidate;
         }
         return employerValidate;
     }
 
-    private Result employerRegister(CompanyRegisterDto companyRegisterDto){
+    private Result companyRegister(CompanyRegisterDto companyRegisterDto){
 
-        DataResult<Company> result = this.candidateRegister(companyRegisterDto);
+        DataResult<Company> result = this.save(companyRegisterDto);
        if (!result.isSuccess()){
             return result;
         }
@@ -62,10 +64,11 @@ public class CompanyAuthManager implements CompanyAuthService {
 
 
 
-    private DataResult<Company> candidateRegister(CompanyRegisterDto companyRegisterDto){
+    private DataResult<Company> save(CompanyRegisterDto companyRegisterDto){
 
 
         Company company = this.companyMapper.dtoToModel(companyRegisterDto);
+        company.setUuid(UUID.randomUUID().toString());
 
         Result result=   this.companyService.add(company);
 

@@ -34,9 +34,9 @@ public abstract class User {
     @Column(name = "password")
     private String password;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "userİd")
-    private List<VerificationCode> verificationCodeList;
+    @Column(name = "uuid")
+    private String uuid;
+
 
     public User(String email, String password) {
         this.email = email;

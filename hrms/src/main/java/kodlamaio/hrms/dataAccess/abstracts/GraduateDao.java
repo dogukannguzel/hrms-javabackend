@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface GraduateDao extends JpaRepository<Graduate,Integer> {
 
-    Optional<Graduate> findByDescription(String description);
+    Optional<Graduate> findByGraduateDescription(String description);
 }

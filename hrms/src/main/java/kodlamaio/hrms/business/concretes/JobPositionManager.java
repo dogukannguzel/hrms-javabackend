@@ -6,6 +6,7 @@ import kodlamaio.hrms.core.utilities.mapper.JobPositionMapper;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;
+import kodlamaio.hrms.entities.dtos.JobPositionGetDto;
 import kodlamaio.hrms.entities.dtos.JobPositionPostDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,8 +35,10 @@ public class JobPositionManager implements JobPositionService {
 }
 
     @Override
-    public DataResult<List<JobPosition>> getAll() {
-        return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(), Message.positionListed);
+    public DataResult<List<JobPositionGetDto>> getAll() {
+        List<JobPosition> jobPositionList = this.jobPositionDao.findAll();
+
+        return new SuccessDataResult<List<JobPositionGetDto>>(this.jobPositionMapper.modelToDtos(jobPositionList), Message.positionListed);
     }
 
 

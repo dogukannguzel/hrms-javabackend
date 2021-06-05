@@ -8,6 +8,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.TechonologyDao;
 import kodlamaio.hrms.entities.concretes.Technology;
+import kodlamaio.hrms.entities.dtos.TechonologyGetDto;
 import kodlamaio.hrms.entities.dtos.TechonologyPostDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,9 @@ public class TechonologyManager implements TechonologyService {
 
 
     @Override
-    public DataResult<List<Technology>> getAll() {
-        return new SuccessDataResult<List<Technology>>(this.techonologyDao.findAll(),"Data listelendi");
+    public DataResult<List<TechonologyGetDto>> getAll() {
+        List<Technology> technologyList = this.techonologyDao.findAll();
+        return new SuccessDataResult<List<TechonologyGetDto>>(this.techonologyMapper.modelToDtos(technologyList),"Data listelendi");
     }
 
     @Override

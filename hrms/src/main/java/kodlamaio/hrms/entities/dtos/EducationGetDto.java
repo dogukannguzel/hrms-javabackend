@@ -1,22 +1,21 @@
 package kodlamaio.hrms.entities.dtos;
 
+import kodlamaio.hrms.entities.concretes.Education;
+import kodlamaio.hrms.entities.concretes.Graduate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class EducationPostDto {
+public class EducationGetDto {
+
     private int id;
-    private int resumeId;
-    private int graduateId;
     private String schoolName;
+    private String description;
     private String schoolDepartment;
     private LocalDate startedDate;
     private LocalDate endedDate;
-
 }

@@ -2,6 +2,7 @@ package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.hrms.business.constrains.Message;
+import kodlamaio.hrms.core.utilities.mapper.JobAdversitementMapper;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -20,12 +21,13 @@ import java.util.List;
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService {
     private final JobAdvertisementDao jobAdvertisementDao;
-    private final ModelMapper modelMapper;
+    private final JobAdversitementMapper jobAdversitementMapper;
 
 
-    public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao, ModelMapper modelMapper) {
+    public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao, JobAdversitementMapper jobAdversitementMapper) {
         this.jobAdvertisementDao = jobAdvertisementDao;
-        this.modelMapper = modelMapper;
+        this.jobAdversitementMapper = jobAdversitementMapper;
+
 
     }
 
@@ -39,7 +41,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
     @Override
     public Result add(JobAdvertisementPostDto jobAdvertisementPostDto) {
-        JobAdvertisement jobAdvertisement = modelMapper.map(jobAdvertisementPostDto,JobAdvertisement.class);
+        JobAdvertisement jobAdvertisement = this.jobAdversitementMapper.dtoToModel(jobAdvertisementPostDto);
         this.jobAdvertisementDao.save(jobAdvertisement);
         return new SuccessResult(Message.jobAdvertisementAdded);
     }

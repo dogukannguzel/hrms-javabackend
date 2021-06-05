@@ -8,6 +8,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobExperienceDao;
 import kodlamaio.hrms.entities.concretes.JobExperience;
+import kodlamaio.hrms.entities.dtos.JobExperienceGetDto;
 import kodlamaio.hrms.entities.dtos.JobExperiencePostDto;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,9 @@ public class JobExperienceManager implements JobExperienceService {
 
 
     @Override
-    public DataResult<List<JobExperience>> getAll() {
-        return new SuccessDataResult<List<JobExperience>>(this.jobExperienceDao.findAll(),"Data listelendi");
+    public DataResult<List<JobExperienceGetDto>> getAll() {
+        List<JobExperience> jobExperienceList = this.jobExperienceDao.findAll();
+        return new SuccessDataResult<List<JobExperienceGetDto>>(this.jobExperienceMapper.modelToDtos(jobExperienceList),"Data listelendi");
     }
 
     @Override

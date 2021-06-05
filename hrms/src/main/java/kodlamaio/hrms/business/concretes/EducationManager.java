@@ -8,6 +8,7 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.EducationDao;
 import kodlamaio.hrms.entities.concretes.Education;
+import kodlamaio.hrms.entities.dtos.EducationGetDto;
 import kodlamaio.hrms.entities.dtos.EducationPostDto;
 import org.springframework.stereotype.Service;
 
@@ -18,15 +19,16 @@ public class EducationManager implements EducationService {
     private final EducationDao educationDao;
     private final EducationMapper educationMapper;
 
+
     public EducationManager(EducationDao educationDao, EducationMapper educationMapper) {
         this.educationDao = educationDao;
         this.educationMapper = educationMapper;
     }
 
     @Override
-    public DataResult<List<Education>> getAll() {
-        return new SuccessDataResult<List<Education>>(this.educationDao.findAll(),"Data listelendi");
-    }
+    public DataResult<List<EducationGetDto>> getAll() {
+        List<Education> educationGetDtoList = this.educationDao.findAll();
+        return new SuccessDataResult<List<EducationGetDto>>(this.educationMapper.modelToDto(educationGetDtoList));}
 
     @Override
     public Result add(EducationPostDto educationPostDto) {
@@ -34,5 +36,11 @@ public class EducationManager implements EducationService {
 
         this.educationDao.save(education);
         return new SuccessResult("Eğitim eklendi");
+    }
+
+    @Override
+    public DataResult<List<EducationGetDto>> findAllByResumeIdOOrderByStartedDate(int resumId) {
+        List<Education> educationList = this.educationDao.findAllByResumeIdOrderByStartedDate(resumId);
+        return new SuccessDataResult<List<EducationGetDto>>(this.educationMapper.modelToDto(educationList));
     }
 }

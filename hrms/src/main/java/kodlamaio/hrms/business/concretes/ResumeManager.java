@@ -2,14 +2,14 @@ package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.ResumeService;
 import kodlamaio.hrms.business.constrains.Message;
-import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.mapper.ResumeMapper;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.utilities.ımageService.ImageService;
 import kodlamaio.hrms.dataAccess.abstracts.ResumDao;
 import kodlamaio.hrms.entities.concretes.Resume;
-import org.modelmapper.ModelMapper;
+import kodlamaio.hrms.entities.dtos.ResumeGetDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,19 +22,22 @@ import java.util.Map;
 public class ResumeManager implements ResumeService {
     private final ImageService imageService;
     private final ResumDao resumDao;
-    private final ModelMapper modelMapper;
+    private final ResumeMapper resumeMapper;
 
     @Autowired
-    public ResumeManager(ImageService imageService, ResumDao resumDao, ModelMapper modelMapper) {
+    public ResumeManager(ImageService imageService, ResumDao resumDao, ResumeMapper resumeMapper) {
         this.imageService = imageService;
         this.resumDao = resumDao;
-        this.modelMapper = modelMapper;
+        this.resumeMapper = resumeMapper;
+
     }
 
 
     @Override
-    public DataResult<List<Resume>> getAll() {
-        return new SuccessDataResult<List<Resume>>(this.resumDao.findAll(),"Data listelendi");
+    public SuccessDataResult<List<ResumeGetDto>> getAll() {
+        List<Resume> resumeList = this.resumDao.findAll();
+
+        return new SuccessDataResult<List<ResumeGetDto>>(this.resumeMapper.map(resumeList),"Data listelendi");
     }
 
     @Override

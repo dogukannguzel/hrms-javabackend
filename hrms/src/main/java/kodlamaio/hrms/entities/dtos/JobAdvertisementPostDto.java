@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -34,6 +36,7 @@ public class JobAdvertisementPostDto {
     @NotNull(message = "İş ilanı açıklaması boş bırakılamaz")
     private String jobDescription;
 
+    @Future(message = "Girilen tarih geriye dönük bir tarih olamaz")
     @NotNull(message = "İş ilanı bitiş süresi alanı boş bırakılamaz ")
     private LocalDate applicationDeadline;
 

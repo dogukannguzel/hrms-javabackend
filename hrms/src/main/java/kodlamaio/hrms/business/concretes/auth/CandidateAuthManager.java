@@ -13,6 +13,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class CandidateAuthManager implements CandidateAuthService {
 
@@ -53,6 +55,7 @@ public class CandidateAuthManager implements CandidateAuthService {
 
     private DataResult<Candidate> candidateRegister(CandidatesRegisterDto candidatesRegisterDto){
         Candidate candidate = this.candidateMapper.dtoToModel(candidatesRegisterDto);
+        candidate.setUuid(UUID.randomUUID().toString());
         Result result =this.candidateService.add(candidate);
         if (!result.isSuccess()){
             return new ErrorDataResult<>(null,result.getMessage());
