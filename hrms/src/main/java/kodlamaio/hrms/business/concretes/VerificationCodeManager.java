@@ -33,9 +33,9 @@ public class VerificationCodeManager implements VerificationCodeService {
 
        String uuıd=this.generateCodeService.generateCode();
        int validity=60*5*1000;
-       VerificationCode verificationCode = new VerificationCode(user,uuıd,new Date(System.currentTimeMillis()+validity));
+       VerificationCode verificationCode = new VerificationCode(user.getUuid(),uuıd,new Date(System.currentTimeMillis()+validity));
        this.verificationCodeDao.save(verificationCode);
-       this.mailService.sendMail("http://localhost:8080/api/auth/confirm/"+user.getUuid()+"/"+uuıd);
+       this.mailService.sendMail(user.getEmail(),"http://localhost:8080/api/auth/confirm/"+user.getUuid()+"/"+uuıd);
        return new SuccessResult(Message.codeToMail);
     }
 }

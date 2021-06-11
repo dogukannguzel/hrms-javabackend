@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface EducationService {
 
+    DataResult<EducationGetDto> findAllByResumeId(int resumId);
+
     DataResult<List<EducationGetDto>> getAll();
 
     Result add(EducationPostDto educationPostDto);

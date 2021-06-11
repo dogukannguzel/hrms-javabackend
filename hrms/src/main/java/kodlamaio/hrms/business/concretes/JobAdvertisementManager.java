@@ -16,6 +16,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 @Service
@@ -34,9 +35,23 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
     @Override
     public DataResult<List<JobAdvertisement>> getAll() {
+
+
         return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(),"İş ilanları listelendi");
     }
 
+    @Override
+    public DataResult<JobAdvertisementGetDto> findAllById(int id) {
+
+        JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.findAllById(id);
+
+        return new SuccessDataResult<JobAdvertisementGetDto>(this.jobAdversitementMapper.modelToDto(jobAdvertisement));
+    }
+
+    @Override
+    public DataResult<List<JobAdvertisementTableDto>> getByJobAdversitementCompanyIdTableDto(int id) {
+        return new SuccessDataResult<List<JobAdvertisementTableDto>>(this.jobAdvertisementDao.getByJobAdversitementCompanyIdTableDto(id));
+    }
 
 
     @Override
@@ -64,15 +79,15 @@ public class JobAdvertisementManager implements JobAdvertisementService {
     }
 
     @Override
-    public  DataResult<List<JobAdvertisement>> getByEmployerId(int id) {
+    public  DataResult<List<JobAdvertisement>> getByCompanyId(int id) {
         return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByCompanyId(id),Message.jobAdvertisementListed);
     }
 
     @Override
-    public DataResult<List<JobAdvertisementGetDto>> getAllByEnableTrueAndEmployerId(int employerİd) {
+    public DataResult<List<JobAdvertisementGetDto>> getAllByEnableTrueAndEmployerId(int companyId) {
 
 
-        return new SuccessDataResult<List<JobAdvertisementGetDto>>(this.jobAdvertisementDao.getByJobAdversitementTrueAndCompanyIdDto(employerİd),Message.jobAdvertisementListed) ;
+        return new SuccessDataResult<List<JobAdvertisementGetDto>>(this.jobAdvertisementDao.getByJobAdversitementTrueAndCompanyIdDto(companyId),Message.jobAdvertisementListed) ;
     }
     @Override
     public DataResult<List<JobAdvertisementGetDto>> getByJobAdversitementTrueDto() {

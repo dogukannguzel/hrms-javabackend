@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/jobposition")
+@CrossOrigin
 public class JobPositionsController {
 
     private final JobPositionService jobPositionService;
@@ -29,7 +31,7 @@ public class JobPositionsController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestBody JobPositionPostDto jobPositionPostDto){
+    public ResponseEntity<?> add(@RequestBody @Valid JobPositionPostDto jobPositionPostDto){
         return ResponseEntity.ok(this.jobPositionService.add(jobPositionPostDto));
     }
 

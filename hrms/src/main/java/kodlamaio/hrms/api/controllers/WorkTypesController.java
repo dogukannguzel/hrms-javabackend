@@ -1,7 +1,6 @@
 package kodlamaio.hrms.api.controllers;
 
-import kodlamaio.hrms.business.abstracts.CityService;
-import kodlamaio.hrms.entities.concretes.City;
+import kodlamaio.hrms.business.abstracts.WorkTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,22 +8,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-
 @RestController
-@RequestMapping("/api/citys")
+@RequestMapping("/api/worktypes")
 @CrossOrigin
-public class CitysController {
+public class WorkTypesController {
 
-    private final CityService cityService;
+    private final WorkTypeService workTypeService;
+
     @Autowired
-    public CitysController(CityService cityService) {
-        this.cityService = cityService;
+    public WorkTypesController(WorkTypeService workTypeService) {
+        this.workTypeService = workTypeService;
+
     }
-    @GetMapping("/getAll")
+
+
+    @GetMapping("/getall")
     public ResponseEntity<?> getAll(){
-        return ResponseEntity.ok(this.cityService.getAll());
+        return ResponseEntity.ok(this.workTypeService.getAll());
     }
 
 }

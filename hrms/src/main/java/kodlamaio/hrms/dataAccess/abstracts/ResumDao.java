@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ResumDao extends JpaRepository<Resume,Integer> {
-
+    List<Resume> findAllByCandidateId(int candidateId);
 }

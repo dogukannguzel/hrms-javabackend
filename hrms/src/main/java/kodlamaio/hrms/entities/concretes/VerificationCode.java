@@ -43,12 +43,10 @@ public  class VerificationCode {
     @Column(name = "code_status")
     private boolean code_status;
 
-    @OneToOne()
-    @JoinColumn(name = "user_id")
-    private User userİd;
+    private String userUuid;
 
-    public VerificationCode(User userİd, String code,Date expirationDate) {
-        this.userİd = userİd;
+    public VerificationCode(String userUuid, String code,Date expirationDate) {
+        this.userUuid = userUuid;
         this.code = code;
         this.expirationDate=expirationDate;
     }

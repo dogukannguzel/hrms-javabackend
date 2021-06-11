@@ -3,6 +3,7 @@ package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.CompanyService;
 import kodlamaio.hrms.business.validationRules.abstracts.CompanyValidatorService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.dataAccess.abstracts.UserDao;
 import kodlamaio.hrms.entities.concretes.Company;
@@ -16,11 +17,12 @@ public class CompanyManager extends UserManager<Company> implements CompanyServi
 
     @Autowired
     public CompanyManager(UserDao<Company> userDao, CompanyValidatorService companyValidatorService) {
-        super(userDao);
+        super( userDao);
         this.companyValidatorService = companyValidatorService;
 
 
     }
+
 
     @Override
     public Result add(Company company) {
@@ -30,4 +32,6 @@ public class CompanyManager extends UserManager<Company> implements CompanyServi
         }
         return result;
     }
+
+
 }

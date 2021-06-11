@@ -2,6 +2,8 @@ package kodlamaio.hrms.api.controllers;
 
 import kodlamaio.hrms.business.abstracts.EducationService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms.entities.concretes.Education;
 import kodlamaio.hrms.entities.dtos.EducationGetDto;
 import kodlamaio.hrms.entities.dtos.EducationPostDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +34,16 @@ public class EducationsController {
         return ResponseEntity.ok(this.educationService.add(educationPostDto));
     }
     @GetMapping("/findAllByResumeIdOOrderByStartedDate")
-    public DataResult<List<EducationGetDto>> findAllByResumeIdOOrderByStartedDate(@RequestParam int resumId) {
+    public ResponseEntity<?> findAllByResumeIdOOrderByStartedDate(@RequestParam int resumId) {
 
-        return this.educationService.findAllByResumeIdOOrderByStartedDate(resumId);
+        return ResponseEntity.ok(this.educationService.findAllByResumeIdOOrderByStartedDate(resumId));
+    }
+
+    @GetMapping("/findAllByResumeId")
+    public ResponseEntity<?> findAllByResumeId(int resumId) {
+
+
+        return ResponseEntity.ok(this.educationService.findAllByResumeId(resumId));
     }
 
 }

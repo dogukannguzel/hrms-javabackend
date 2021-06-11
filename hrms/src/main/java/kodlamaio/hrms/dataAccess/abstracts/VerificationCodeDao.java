@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface VerificationCodeDao extends JpaRepository<VerificationCode, Integer> {
     Optional<VerificationCode> findByCode(String code);
     boolean existsByCode(String code);
-    VerificationCode getByUserİd(int id);
+    boolean existsByUserUuid(String uuid);
 
 
 

@@ -4,12 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TechonologyPostDto {
+public class CandidateGetDto {
+
     private int id;
-    private int resumeId;
-    private String  techonologyDescription;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private LocalDate birthDate;
 
 }

@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class TechonologyGetDto {
     private int id;
     private int resumeId;
-    private String  techonologydescription;
+    private String  techonologyDescription;
 
 }

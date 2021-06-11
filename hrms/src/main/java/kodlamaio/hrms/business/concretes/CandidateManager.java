@@ -5,14 +5,14 @@ import kodlamaio.hrms.business.constrains.Message;
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.core.adapters.abstracts.UserRealCheckService;
 import kodlamaio.hrms.core.generateCode.GenerateCodeService;
-import kodlamaio.hrms.core.utilities.businessEngine.BusinessRun;
-import kodlamaio.hrms.core.utilities.results.ErrorResult;
-import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.core.utilities.results.SuccessResult;
+import kodlamaio.hrms.core.utilities.mapper.CandidateMapper;
+import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.hrms.dataAccess.abstracts.UserDao;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CandidateManager extends UserManager<Candidate> implements CandidateService {
@@ -23,8 +23,9 @@ public class CandidateManager extends UserManager<Candidate> implements Candidat
     private final GenerateCodeService generateCodeService;
 
 
-    public CandidateManager(UserDao<Candidate> userDao, CandidateDao candidateDao ,UserRealCheckService personCheckService, GenerateCodeService generateCodeService) {
-        super(userDao);
+    public CandidateManager(UserDao<Candidate> userDao,  CandidateDao candidateDao, UserRealCheckService personCheckService, GenerateCodeService generateCodeService) {
+        super( userDao);
+
 
         this.candidateDao=candidateDao;
         this.personCheckService = personCheckService;

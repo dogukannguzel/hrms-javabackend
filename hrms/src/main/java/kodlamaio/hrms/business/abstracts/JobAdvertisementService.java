@@ -13,7 +13,8 @@ public interface JobAdvertisementService {
 
     DataResult<List<JobAdvertisement>> getAll();
 
-
+    DataResult<JobAdvertisementGetDto> findAllById(int id);
+    DataResult<List<JobAdvertisementTableDto>> getByJobAdversitementCompanyIdTableDto(int id);
 
     Result add(JobAdvertisementPostDto jobAdvertisementPostDto);
 
@@ -21,7 +22,7 @@ public interface JobAdvertisementService {
 
     Result setİsJobEnable(int employerId,int id);
 
-    DataResult<List<JobAdvertisement>> getByEmployerId(int id);
+    DataResult<List<JobAdvertisement>> getByCompanyId(int id);
 
     DataResult<List<JobAdvertisementGetDto>> getAllByEnableTrueAndEmployerId(int employerİd);
 

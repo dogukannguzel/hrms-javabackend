@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/employers")
+@RequestMapping("api/companys")
+@CrossOrigin
 public class CompanysController {
 
     private CompanyService companyService;
@@ -25,6 +26,11 @@ public class CompanysController {
         return ResponseEntity.ok( this.companyService.getAll());
     }
 
+    @GetMapping("/getAllById")
+    public ResponseEntity<?> getAllById(@RequestParam("id") int id){
+
+        return ResponseEntity.ok( this.companyService.findAllById(id));
+    }
 
 
 }

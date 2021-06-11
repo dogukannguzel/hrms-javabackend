@@ -26,6 +26,13 @@ public class EducationManager implements EducationService {
     }
 
     @Override
+    public DataResult<EducationGetDto> findAllByResumeId(int resumId) {
+        Education education = this.educationDao.findAllByResumeId(resumId);
+
+        return new SuccessDataResult<EducationGetDto>(this.educationMapper.modelToDto(education));
+    }
+
+    @Override
     public DataResult<List<EducationGetDto>> getAll() {
         List<Education> educationGetDtoList = this.educationDao.findAll();
         return new SuccessDataResult<List<EducationGetDto>>(this.educationMapper.modelToDto(educationGetDtoList));}

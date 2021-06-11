@@ -38,7 +38,7 @@ public interface ResumeMapper {
 
     @Named("tecGetDto")
     @Mapping(source = "resume.id",target = "resumeId")
-    @Mapping(source = "technology.techonologydescription",target = "techonologydescription")
+    @Mapping(source = "technology.techonologyDescription",target = "techonologyDescription")
     TechonologyGetDto tecToDto(Technology technology);
 
     @IterableMapping(qualifiedByName = "tecGetDto")
@@ -52,6 +52,8 @@ public interface ResumeMapper {
     @Mapping(target = "languages", source = "languages", qualifiedByName = "langGetDtos")
     @Mapping(target = "technologies", source = "technologies", qualifiedByName = "tecToDtos")
     @Mapping(target = "candidateId", source = "candidate.id")
+    @Mapping(target = "candidateFirstName", source = "candidate.firstName")
+    @Mapping(target = "candidateLastName", source = "candidate.lastName")
     @Named("toGetDto")
     ResumeGetDto map(Resume resume);
 

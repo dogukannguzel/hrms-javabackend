@@ -1,5 +1,9 @@
 package kodlamaio.hrms.core.utilities.results;
 
+import kodlamaio.hrms.entities.dtos.CandidateGetDto;
+
+import java.util.List;
+
 public class SuccessDataResult<T> extends DataResult<T>{
 
     public SuccessDataResult() {
@@ -18,4 +22,7 @@ public class SuccessDataResult<T> extends DataResult<T>{
         super(data,true);
     }
 
+    public SuccessDataResult(List<T> data) {
+        super((T) data,true);
+    }
 }

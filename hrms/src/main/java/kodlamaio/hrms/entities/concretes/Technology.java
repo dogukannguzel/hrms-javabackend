@@ -27,7 +27,7 @@ public class Technology {
     private Resume resume;
 
     @Column(name="description")
-    private String  techonologydescription;
+    private String  techonologyDescription;
 
     @CreationTimestamp
     @Temporal(TemporalType.DATE)

@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface EducationDao extends JpaRepository<Education,Integer> {
     List<Education> findAllByResumeIdOrderByStartedDate(int resumId);
+
+
+    Education findAllByResumeId(int resumId);
+
 }

@@ -30,6 +30,11 @@ public class JobAdvertisementPostDto {
 
     private int maxSalary;
 
+    private int workPlaceId;
+
+    private int workTypeId;
+
+
     @NotNull(message = "Pozisyon adeti alanı boş bırakılamaz")
     private int openPosition;
 

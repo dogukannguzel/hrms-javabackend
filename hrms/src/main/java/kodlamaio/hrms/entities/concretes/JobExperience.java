@@ -29,7 +29,7 @@ public class JobExperience {
     private String corporatName;
 
     @Column(name = "position")
-    private String position;
+    private String position="ceo";
 
     @Column(name = "started_date")
     private LocalDate startedDate;

@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TechonologyPostDto {
+public class GraduateGetDto {
+
     private int id;
-    private int resumeId;
-    private String  techonologyDescription;
+    private String graduateDescription;
 
 }

@@ -28,11 +28,15 @@ public class JobAdvertisementGetDto {
 
     private LocalDate applicationDeadline;
 
-    private String city;
+    private String cityName;
 
     private String companyName;
 
     private String jobPosition;
+
+    private String workPlaceType;
+
+    private String workType;
 
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date createdDate;

@@ -6,6 +6,7 @@ import kodlamaio.hrms.core.utilities.businessEngine.BusinessRun;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.UserDao;
 import kodlamaio.hrms.dataAccess.abstracts.VerificationCodeDao;
+import kodlamaio.hrms.entities.abstracts.User;
 import kodlamaio.hrms.entities.concretes.VerificationCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,9 @@ public class VerifyManager implements VerifyService {
 
 
     @Override
-    public Result verify(String uuid,String code) {
-        Result run = BusinessRun.run(userCodeExist(uuid),codeCheck(code));
+    public Result verify(String userUuid,String code) {
+        String userCode = userUuid;
+        Result run = BusinessRun.run(userUuidCheck(userCode),codeCheck(code));
         if (!run.isSuccess()){
            return run;
         }
@@ -35,15 +37,32 @@ public class VerifyManager implements VerifyService {
         VerificationCode verificationCode=getObject(code);
         verificationCode.setVerified(true);
         verificationCode.setConfirmDate(LocalDate.now());
+        setUserVerify(userCode);
         this.verificationCodeDao.save(verificationCode);
         return new SuccessResult(Message.successVerify);
     }
 
+    private void setUserVerify(String userUuid){
+        User user = this.userDao.findByUuid(userUuid);
+        user.setVerified(true);
+        this.userDao.save(user);
+    }
 
     private VerificationCode getObject(String code){
         VerificationCode verificationCode = this.verificationCodeDao.findByCode(code).get();
         return  verificationCode;
     }
+
+
+
+
+    private Result userUuidCheck(String uuid){
+        if (this.verificationCodeDao.existsByUserUuid(uuid)){
+            return new SuccessResult();
+        }
+        return new ErrorResult("Sistemde kayıtlı bir kullanıcı değil");
+    }
+
 
 
     private Result isİtVerified(String code){
@@ -67,12 +86,7 @@ public class VerifyManager implements VerifyService {
     }
 
 
-    private Result userCodeExist(String uuid){
-        if (this.userDao.existsByUuid(uuid)){
-            return new SuccessResult();
-        }
-        return new ErrorResult("Sistemde kayıtlı olan bir kullanıcı değil !");
-    }
+
 
 
 

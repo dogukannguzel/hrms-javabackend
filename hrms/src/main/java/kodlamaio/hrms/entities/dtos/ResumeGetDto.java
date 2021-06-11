@@ -14,6 +14,8 @@ public class ResumeGetDto {
 
     private int id;
     private int candidateId;
+    private String candidateFirstName;
+    private String candidateLastName;
     private String githubLink;
     private String linkedLink;
     private String photo;

@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface UserService<T extends User> {
     DataResult<List<T>> getAll();
+    DataResult<List<T>> findAllById(int id);
     Result add(T t) ;
 }
