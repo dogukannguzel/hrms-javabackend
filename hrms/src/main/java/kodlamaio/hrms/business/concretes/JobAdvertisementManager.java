@@ -12,24 +12,21 @@ import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementGetDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementPostDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementTableDto;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.util.List;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService {
     private final JobAdvertisementDao jobAdvertisementDao;
+
     private final JobAdversitementMapper jobAdversitementMapper;
 
 
     public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao, JobAdversitementMapper jobAdversitementMapper) {
         this.jobAdvertisementDao = jobAdvertisementDao;
         this.jobAdversitementMapper = jobAdversitementMapper;
-
-
     }
 
 
@@ -41,11 +38,11 @@ public class JobAdvertisementManager implements JobAdvertisementService {
     }
 
     @Override
-    public DataResult<JobAdvertisementGetDto> findAllById(int id) {
+    public DataResult<List<JobAdvertisementGetDto>> findAllById() {
 
-        JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.findAllById(id);
+        List<JobAdvertisement> jobAdvertisement=this.jobAdvertisementDao.findAllByEnableFalse();
 
-        return new SuccessDataResult<JobAdvertisementGetDto>(this.jobAdversitementMapper.modelToDto(jobAdvertisement));
+        return  new SuccessDataResult<List<JobAdvertisementGetDto>>(this.jobAdversitementMapper.modelToDto(jobAdvertisement));
     }
 
     @Override
@@ -71,11 +68,11 @@ public class JobAdvertisementManager implements JobAdvertisementService {
     }
 
     @Override
-    public Result setİsJobEnable(int employerId,int id) {
-        JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.findAllByCompanyIdAndId(employerId,id);
-        jobAdvertisement.setEnable(false);
-        this.jobAdvertisementDao.save(jobAdvertisement);
-        return new SuccessResult(Message.setJobAdvertisement);
+    public Result setİsJobEnable(int id) {
+     JobAdvertisement jobAdvertisement=this.jobAdvertisementDao.getOne(id);
+     jobAdvertisement.setEnable(true);
+     this.jobAdvertisementDao.save(jobAdvertisement);
+      return new SuccessResult(Message.setJobAdvertisementTrue);
     }
 
     @Override
@@ -102,6 +99,11 @@ public class JobAdvertisementManager implements JobAdvertisementService {
     @Override
     public DataResult<List<JobAdvertisementTableDto>> getByJobAdversitementTableDto() {
         return new SuccessDataResult<List<JobAdvertisementTableDto>>(this.jobAdvertisementDao.getByJobAdversitementTableDto(),Message.jobAdvertisementListed);
+    }
+
+    @Override
+    public DataResult<List<JobAdvertisementTableDto>> getByJobAdversitementEnableFalse() {
+        return new SuccessDataResult<List<JobAdvertisementTableDto>>(this.jobAdvertisementDao.getByJobAdversitementEnableFalse());
     }
 
 

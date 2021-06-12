@@ -3,8 +3,12 @@ package kodlamaio.hrms.core.utilities.mapper;
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementGetDto;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementPostDto;
+import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface JobAdversitementMapper {
@@ -21,7 +25,11 @@ public interface JobAdversitementMapper {
     @Mapping(source = "jobPosition.position",target = "jobPosition")
     @Mapping(source = "workPlace.type",target ="workPlaceType" )
     @Mapping(source = "workType.type",target = "workType")
+    @Named("modelToDto")
     JobAdvertisementGetDto modelToDto(JobAdvertisement jobAdvertisement);
+
+    @IterableMapping(qualifiedByName = "modelToDto")
+    List<JobAdvertisementGetDto> modelToDto(List<JobAdvertisement> jobAdvertisementList);
 
 
 

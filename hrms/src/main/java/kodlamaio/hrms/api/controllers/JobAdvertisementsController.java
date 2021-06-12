@@ -43,8 +43,8 @@ public class JobAdvertisementsController {
     }
 
     @PutMapping("/setEnable")
-    public ResponseEntity<?> setİsJobEnable(@RequestParam("companyId") int companyId,@RequestParam("id") int id) {
-        return ResponseEntity.ok(this.jobAdvertisementService.setİsJobEnable(companyId,id));
+    public ResponseEntity<?> setİsJobEnable(@RequestParam("id") int id) {
+        return ResponseEntity.ok(this.jobAdvertisementService.setİsJobEnable(id));
     }
 
     @GetMapping("/getAllSorted")
@@ -85,9 +85,17 @@ public class JobAdvertisementsController {
     }
 
     @GetMapping("/findAllById")
-    public ResponseEntity<?> findAllById(@RequestParam int id) {
+    public ResponseEntity<?> findAllById() {
 
-        return ResponseEntity.ok(this.jobAdvertisementService.findAllById(id));
+        return ResponseEntity.ok(this.jobAdvertisementService.findAllById());
     }
+
+    @GetMapping("/getByJobAdversitementEnableFalse")
+    public ResponseEntity<?> getByJobAdversitementEnableFalse() {
+
+        return ResponseEntity.ok(this.jobAdvertisementService.getByJobAdversitementEnableFalse());
+
+    }
+
 
 }
