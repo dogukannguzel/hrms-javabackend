@@ -85,9 +85,9 @@ public class JobAdvertisementsController {
     }
 
     @GetMapping("/findAllById")
-    public ResponseEntity<?> findAllById() {
+    public ResponseEntity<?> findAllById(@RequestParam() int id) {
 
-        return ResponseEntity.ok(this.jobAdvertisementService.findAllById());
+        return ResponseEntity.ok(this.jobAdvertisementService.findAllById(id));
     }
 
     @GetMapping("/getByJobAdversitementEnableFalse")
@@ -95,6 +95,12 @@ public class JobAdvertisementsController {
 
         return ResponseEntity.ok(this.jobAdvertisementService.getByJobAdversitementEnableFalse());
 
+    }
+
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteById(@RequestParam int id){
+        return ResponseEntity.ok(this.jobAdvertisementService.deleteById(id));
     }
 
 

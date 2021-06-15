@@ -1,7 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.EducationService;
-import kodlamaio.hrms.core.utilities.mapper.EducationMapper;
+import kodlamaio.hrms.mapper.EducationMapper;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
@@ -10,6 +10,7 @@ import kodlamaio.hrms.dataAccess.abstracts.EducationDao;
 import kodlamaio.hrms.entities.concretes.Education;
 import kodlamaio.hrms.entities.dtos.EducationGetDto;
 import kodlamaio.hrms.entities.dtos.EducationPostDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class EducationManager implements EducationService {
     private final EducationDao educationDao;
     private final EducationMapper educationMapper;
 
-
+    @Autowired
     public EducationManager(EducationDao educationDao, EducationMapper educationMapper) {
         this.educationDao = educationDao;
         this.educationMapper = educationMapper;

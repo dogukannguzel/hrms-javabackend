@@ -8,9 +8,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-
+import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Data
@@ -41,6 +44,16 @@ public abstract class User {
 
     @Column(name = "is_verified")
     private boolean isVerified;
+
+
+    @Column(name = "created_date")
+    private LocalDateTime createdDate=LocalDateTime.now();
+
+
+    @LastModifiedDate()
+    @Column(name = "updated_date")
+    private LocalDateTime uptadedDate;
+
 
     public User(String email, String password) {
         this.email = email;

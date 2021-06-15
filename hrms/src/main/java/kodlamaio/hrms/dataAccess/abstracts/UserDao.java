@@ -12,7 +12,7 @@ public interface UserDao<T extends User> extends JpaRepository<T,Integer> {
    Optional<T> findByEmail(String email);
    boolean existsByUuid(String uuid);
    User findByUuid(String uuid);
-   List<T> findById(int id);
+   T findById(int id);
 
 
 }

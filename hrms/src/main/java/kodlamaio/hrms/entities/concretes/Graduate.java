@@ -2,7 +2,7 @@ package kodlamaio.hrms.entities.concretes;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import kodlamaio.hrms.core.validation.annotations.ExistByGraduate;
+import kodlamaio.hrms.business.validationRules.annotations.ExistByGraduate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

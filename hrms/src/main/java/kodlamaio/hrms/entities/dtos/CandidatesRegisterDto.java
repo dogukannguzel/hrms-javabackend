@@ -1,7 +1,7 @@
 package kodlamaio.hrms.entities.dtos;
 
-import kodlamaio.hrms.core.validation.annotations.ExistByEmail;
-import kodlamaio.hrms.core.validation.annotations.ExistByİdentificationNumber;
+import kodlamaio.hrms.business.validationRules.annotations.ExistByEmail;
+import kodlamaio.hrms.business.validationRules.annotations.ExistByİdentificationNumber;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

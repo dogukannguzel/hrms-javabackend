@@ -7,6 +7,7 @@ import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.UserDao;
 import kodlamaio.hrms.entities.abstracts.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class UserManager<T extends User> implements UserService<T> {
 
     private final UserDao<T> userDao;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     public UserManager( UserDao<T> userDao) {
 
@@ -32,8 +34,8 @@ public class UserManager<T extends User> implements UserService<T> {
     }
 
     @Override
-    public DataResult<List<T>> findAllById(int id) {
-        return new SuccessDataResult<List<T>>(this.userDao.findById(id)) ;
+    public DataResult<T> findAllById(int id) {
+        return new SuccessDataResult<T>(this.userDao.findById(id));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.LanguageService;
-import kodlamaio.hrms.core.utilities.mapper.LanguageMapper;
+import kodlamaio.hrms.mapper.LanguageMapper;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;

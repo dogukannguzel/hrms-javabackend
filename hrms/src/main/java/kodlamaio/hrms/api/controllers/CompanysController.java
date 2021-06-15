@@ -2,6 +2,7 @@ package kodlamaio.hrms.api.controllers;
 
 import kodlamaio.hrms.business.abstracts.CompanyService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.dataAccess.abstracts.CompanyDao;
 import kodlamaio.hrms.entities.concretes.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,11 @@ public class CompanysController {
 
     private CompanyService companyService;
 
+
     @Autowired
     public CompanysController(CompanyService companyService) {
         this.companyService = companyService;
+
     }
 
     @GetMapping("/getall")

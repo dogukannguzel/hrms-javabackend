@@ -1,7 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.TechonologyService;
-import kodlamaio.hrms.core.utilities.mapper.TechonologyMapper;
+import kodlamaio.hrms.mapper.TechonologyMapper;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;

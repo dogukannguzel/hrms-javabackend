@@ -2,7 +2,7 @@ package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.ResumeService;
 import kodlamaio.hrms.business.constrains.Message;
-import kodlamaio.hrms.core.utilities.mapper.ResumeMapper;
+import kodlamaio.hrms.mapper.ResumeMapper;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;

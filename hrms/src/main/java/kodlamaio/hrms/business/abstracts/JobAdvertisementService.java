@@ -11,9 +11,9 @@ import java.util.List;
 
 public interface JobAdvertisementService {
 
-    DataResult<List<JobAdvertisement>> getAll();
+    DataResult<List<JobAdvertisementGetDto>> getAll();
 
-    DataResult<List<JobAdvertisementGetDto>> findAllById();
+    DataResult<JobAdvertisementGetDto> findAllById(int id);
 
     DataResult<List<JobAdvertisementTableDto>> getByJobAdversitementCompanyIdTableDto(int id);
 
@@ -23,7 +23,7 @@ public interface JobAdvertisementService {
 
     Result setİsJobEnable(int id);
 
-    DataResult<List<JobAdvertisement>> getByCompanyId(int id);
+    DataResult<List<JobAdvertisementGetDto>> getByCompanyId(int id);
 
     DataResult<List<JobAdvertisementGetDto>> getAllByEnableTrueAndEmployerId(int employerİd);
 
@@ -34,4 +34,8 @@ public interface JobAdvertisementService {
     DataResult<List<JobAdvertisementTableDto>> getByJobAdversitementTableDto();
 
     DataResult<List<JobAdvertisementTableDto>> getByJobAdversitementEnableFalse();
+
+
+    Result deleteById(int id);
+
 }

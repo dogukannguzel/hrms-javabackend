@@ -5,11 +5,10 @@ import kodlamaio.hrms.business.abstracts.VerificationCodeService;
 import kodlamaio.hrms.business.abstracts.auth.CandidateAuthService;
 import kodlamaio.hrms.business.constrains.Message;
 import kodlamaio.hrms.business.validationRules.abstracts.AuthValidatorService;
-import kodlamaio.hrms.core.utilities.mapper.CandidateMapper;
+import kodlamaio.hrms.mapper.CandidateMapper;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.entities.concretes.Candidate;
 import kodlamaio.hrms.entities.dtos.CandidatesRegisterDto;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -12,11 +12,12 @@ public class MailManager  implements MailService{
 
     @Override
     public void sendMail(String to,String body) {
+
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject("HRMS ACCOUNT VERİFİED");
         message.setText("Sitemize kayıt olduğunuz için teşekkür ederiz Hesanızı onaylamak için alttakı linke tıklayınız\n"+body);
-        javaMailSender.send(message);
+       // javaMailSender.send(message);
 
     }
 }

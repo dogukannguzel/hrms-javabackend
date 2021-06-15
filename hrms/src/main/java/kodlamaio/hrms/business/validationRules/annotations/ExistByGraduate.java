@@ -1,7 +1,8 @@
-package kodlamaio.hrms.core.validation.annotations;
+package kodlamaio.hrms.business.validationRules.annotations;
 
 
-import kodlamaio.hrms.core.validation.EmailValidation;
+
+import kodlamaio.hrms.business.validationRules.concretes.GraduateValidation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -12,10 +13,10 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {EmailValidation.class})
-public @interface ExistByEmail {
+@Constraint(validatedBy = {GraduateValidation.class})
+public @interface ExistByGraduate {
 
-    String message() default "Bu email adresi ile kayıt yapılmış ";
+    String message() default "Bu derece zaten eklenmiş ";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 

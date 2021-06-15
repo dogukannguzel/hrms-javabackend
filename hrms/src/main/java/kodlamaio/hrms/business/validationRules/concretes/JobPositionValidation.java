@@ -1,6 +1,6 @@
-package kodlamaio.hrms.core.validation;
+package kodlamaio.hrms.business.validationRules.concretes;
 
-import kodlamaio.hrms.core.validation.annotations.ExistsByPosition;
+import kodlamaio.hrms.business.validationRules.annotations.ExistsByPosition;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 

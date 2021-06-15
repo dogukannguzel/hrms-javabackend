@@ -1,7 +1,7 @@
 package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.abstracts.GraduateService;
-import kodlamaio.hrms.core.utilities.mapper.GraduateMapper;
+import kodlamaio.hrms.mapper.GraduateMapper;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;

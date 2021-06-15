@@ -1,6 +1,6 @@
-package kodlamaio.hrms.core.validation.annotations;
+package kodlamaio.hrms.business.validationRules.annotations;
 
-import kodlamaio.hrms.core.validation.İdentificationNumberValidation;
+import kodlamaio.hrms.business.validationRules.concretes.JobPositionValidation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -11,10 +11,9 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {İdentificationNumberValidation.class})
-public @interface ExistByİdentificationNumber {
-
-    String message() default "Bu tc kimlik numarası ile sisteme zaten kayıt yapılmış";
+@Constraint(validatedBy = {JobPositionValidation.class})
+public @interface ExistsByPosition {
+    String message() default "Bu pozisyon zaten eklenmiş ";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 

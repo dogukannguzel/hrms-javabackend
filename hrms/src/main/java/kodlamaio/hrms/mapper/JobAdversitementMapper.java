@@ -1,4 +1,4 @@
-package kodlamaio.hrms.core.utilities.mapper;
+package kodlamaio.hrms.mapper;
 
 import kodlamaio.hrms.entities.concretes.JobAdvertisement;
 import kodlamaio.hrms.entities.dtos.JobAdvertisementGetDto;

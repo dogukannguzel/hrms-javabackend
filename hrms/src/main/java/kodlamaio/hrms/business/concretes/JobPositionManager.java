@@ -2,7 +2,7 @@ package kodlamaio.hrms.business.concretes;
 
 import kodlamaio.hrms.business.constrains.Message;
 import kodlamaio.hrms.business.abstracts.JobPositionService;
-import kodlamaio.hrms.core.utilities.mapper.JobPositionMapper;
+import kodlamaio.hrms.mapper.JobPositionMapper;
 import kodlamaio.hrms.core.utilities.results.*;
 import kodlamaio.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlamaio.hrms.entities.concretes.JobPosition;

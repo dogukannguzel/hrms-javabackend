@@ -16,6 +16,9 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement,Inte
 
     List<JobAdvertisement> getByCompanyId(int id);
 
+    JobAdvertisement findById(int id);
+
+
     @Query("SELECT NEW kodlamaio.hrms.entities.dtos.JobAdvertisementTableDto(p.id,p.company.companyName,p.jobPosition.position,p.openPosition,p.createdDate,p.applicationDeadline) from Company  c inner join c.jobAdvertisements p where c.id=:id")
     List<JobAdvertisementTableDto> getByJobAdversitementCompanyIdTableDto(int id);
 
@@ -34,6 +37,11 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement,Inte
 
     @Query("SELECT NEW kodlamaio.hrms.entities.dtos.JobAdvertisementTableDto(p.id,p.company.companyName,p.jobPosition.position,p.openPosition,p.createdDate,p.applicationDeadline) from Company  c inner join c.jobAdvertisements p where p.enable=false ")
     List<JobAdvertisementTableDto> getByJobAdversitementEnableFalse();
+
+
+
+
+
 
 
 }

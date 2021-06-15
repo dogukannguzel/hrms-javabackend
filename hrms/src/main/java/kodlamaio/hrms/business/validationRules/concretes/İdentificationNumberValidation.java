@@ -1,6 +1,6 @@
-package kodlamaio.hrms.core.validation;
+package kodlamaio.hrms.business.validationRules.concretes;
 
-import kodlamaio.hrms.core.validation.annotations.ExistByİdentificationNumber;
+import kodlamaio.hrms.business.validationRules.annotations.ExistByİdentificationNumber;
 import kodlamaio.hrms.dataAccess.abstracts.CandidateDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
